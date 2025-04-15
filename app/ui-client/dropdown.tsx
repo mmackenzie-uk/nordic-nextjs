@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { ICategoryDTO } from "../DTO/categoryDTO";
+import { PRODUCTS_NAV_FIRST_NAME } from "../template/template";
 
 
 export default function Dropdown({ list, name } : {
@@ -29,7 +30,7 @@ export default function Dropdown({ list, name } : {
         <li className="dropdown">
             <button onClick={handleClick} className="dropdown-btn">{name} <span className={btnState}></span></button>
             <ul className={`dropdown-content ${state}`} >
-                <li key={-1} onClick={() => handleNavigation("")}>All Produkte</li>
+                <li key={-1} onClick={() => handleNavigation("")}>{PRODUCTS_NAV_FIRST_NAME}</li>
             {
                 list.map(({slug, name}, idx) => <li key={idx} onClick={() => handleNavigation(slug)}>{name}</li>)
             }

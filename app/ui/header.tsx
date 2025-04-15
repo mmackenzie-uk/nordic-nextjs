@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import Dropdown from '../ui-client/dropdown';
-import { NAV, LOGO } from '../template/template';
+import { NAV, LOGO, PRODUCTS_NAV_NAME, REGISTER } from '../template/template';
 import SideCart from '../ui-client/cart-aside';
 import BtnCart from '../ui-client/btn-cart';
 import { getCategories } from '../actions/get-actions';
@@ -26,7 +26,7 @@ export default async function Header() {
             </button> */}
             <nav className="flex-item-shop">
               <ul className="list-products" role="list">
-                <Dropdown list={categories} name={"Produkte"} /> 
+                <Dropdown list={categories} name={PRODUCTS_NAV_NAME} /> 
                 {
                   NAV.map(({ name, url }) => <li key={name}><Link href={url}>{name}</Link></li>)
                 }
@@ -35,7 +35,7 @@ export default async function Header() {
             <nav className="flex-item-user">
               <ul className="list-user" role="list">
                 <li>
-                  <Link href='register'>Anmelden</Link>
+                  <Link href='register'>{REGISTER}</Link>
                 </li>
                 <li>
                   <BtnCart />

@@ -1,9 +1,7 @@
 [
-    { "slug": "edelbrand",  "name": "Edelbrand"},
-    { "slug":"wein", "name": "Wein" },
-    { "slug":"schaumwein", "name": "Schaumwein" },
-    { "slug":"most", "name": "Most" },
-    { "slug":"saft", "name": "Saft" },
-    { "slug":"pesto-fruchtaufstrich", "name": "Pesto und Fruchtaufstriche" },
-    { "slug":"geschwister-wurm", "name": "Geschwister Wurm" }
+    { "slug": "bracelets",  "name": "Bracelets"},
+    { "slug":"earrings", "name": "Earrings" },
+    { "slug":"necklaces", "name": "Necklaces" },
+    { "slug":"brooches", "name": "Brooches" },
+    { "slug":"rings", "name": "Rings" }
 ]
