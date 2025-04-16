@@ -56,13 +56,13 @@ export const REGISTER = "";
 export const PRODUCTS_NAV_NAME = "Produkte";
 export const PRODUCTS_NAV_FIRST_NAME = "All Produkte";
 
-export const BRAND = "/brand.svg";
-export const MAP_IMG = "/map.png";
-export const SHIPPING_IMG = "/about.jpg"; 
-export const ABOUT_IMG = "/about.jpg";
-export const CONTACT_IMG = "/about.jpg";
-export const CAROUSEL_IMG_ARR = [ '/img-1.jpg', '/img-2.jpg', '/img-3.jpg'];
-export const LOGO = "/logo.png";
+export const BRAND = "/wwurm/brand.svg";
+export const MAP_IMG = "/wwurm/map.png";
+export const SHIPPING_IMG = "/wwurm/about.jpg"; 
+export const ABOUT_IMG = "/wwurm/about.jpg";
+export const CONTACT_IMG = "/wwurm/about.jpg";
+export const CAROUSEL_IMG_ARR = [ '/wwurm/img-1.jpg', '/wwurm/img-2.jpg', '/wwurm/img-3.jpg'];
+export const LOGO = "/wwurm/logo.png";
 
 
 
