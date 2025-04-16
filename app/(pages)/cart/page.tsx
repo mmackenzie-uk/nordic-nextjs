@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import InputNumber from "@/app/ui-client/input-number";
-import { IMAGE_PREFIX } from "@/app/template/s3-configuration";
+import { IMAGE_PREFIX } from "@/app/templates/s3-configuration";
 import { store } from "@/app/services/cart-service";
 import { ICartItem } from "@/app/domain/cart";
 

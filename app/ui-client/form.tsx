@@ -1,7 +1,7 @@
 "use client"
 
 import { handleProduct } from "@/app/actions/form-actions";
-import { ALBUM_PHOTO_KEY, HREF } from "@/app/template/s3-configuration";
+import { ALBUM_PHOTO_KEY, HREF } from "@/app/templates/s3-configuration";
 import Link from "next/link";
 
 import { _Object } from "@aws-sdk/client-s3";

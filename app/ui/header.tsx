@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import Dropdown from '../ui-client/dropdown';
-import { NAV, LOGO, PRODUCTS_NAV_NAME, REGISTER } from '../template/template';
+import { NAV, LOGO, PRODUCTS_NAV_NAME, REGISTER } from '../templates/template';
 import SideCart from '../ui-client/cart-aside';
 import BtnCart from '../ui-client/btn-cart';
 import { getCategories } from '../actions/get-actions';

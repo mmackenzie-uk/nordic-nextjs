@@ -1,7 +1,7 @@
 
 import { deleteProduct } from "@/app/actions/delete-action";
 import { findAll, getCount } from "@/app/actions/get-actions"
-import { IMAGE_PREFIX } from "@/app/template/s3-configuration";
+import { IMAGE_PREFIX } from "@/app/templates/s3-configuration";
 import { BinIcon, AddIcon, EditIcon } from "@/app/icons-svg";
 
 import Pagination from "@/app/ui-client/pagination";

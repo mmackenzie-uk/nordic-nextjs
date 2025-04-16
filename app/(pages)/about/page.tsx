@@ -3,7 +3,7 @@ import {
     ABOUT_TITLE, 
     ABOUT_TEXT, 
     ABOUT_CAPTION 
-} from "@/app/template/template";
+} from "@/app/templates/template";
 
 export default function About() {
     return (

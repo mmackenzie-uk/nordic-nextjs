@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { CAROUSEL_IMG_ARR, CAROUSEL_INTERVAL, BRAND, CAROUSEL_INIT_STATE } from "../template/template";
+import { CAROUSEL_IMG_ARR, CAROUSEL_INTERVAL, BRAND, CAROUSEL_INIT_STATE } from "../templates/template";
 
 const LEN = CAROUSEL_IMG_ARR.length;
 

@@ -1,11 +1,7 @@
-/* wine shop */
-
+/* charm shop */
 export const SHOP = "products-cm";
-
-export const ABOUT_IMG = "/images/about.jpg";
 export const ABOUT_TITLE = "Beautiful Jewellery Accessories since 2004";
 export const ABOUT_CAPTION = "Our Promise";
-export const CONTACT_IMG = "/images/about.jpg";
 export const CONTACT_TITLE = "Charm Accessories - Contact";
 
 export const ABOUT_TEXT = [
@@ -17,11 +13,7 @@ export const ABOUT_TEXT = [
 export const CONTACT_ADDRESS_CAPTION = "Address ++ Opening Hours";
 export const ADDRESS = ["Charm Accessories", "Dharawal Country, 600 Kingsway, NSW 2228. Miranda", "+61 (02)9525 6344, office@charm.au"];
 export const OPEN_HOURS = ["Charm Accesories at Miranda", "Friday 8.00 – 18.00", "Saturday 8.00 – 12.00"];
-
 export const MAP_CAPTION = "Finding Us ++ Plan";
-export const MAP_IMG = "/map.png";
-
-export const SHIPPING_IMG = "/images/about.jpg"; 
 export const SHIPPING_TITLE = "Shipping & Payment";
 export const DELIVERY_CAPTION = "Delivery";
 export const PAYMENT_CAPTION = "Payment";
@@ -45,13 +37,7 @@ export const EXCHANGE = [
     "Products of inadequate quality are sent to us for examination for up to 14 days, and if the jewelry has lost its properties through no fault of the client, our company Charm Accessories will exchange the product for a similar one. In the event that a similar product is not available, the client has the right to choose a new product for the amount of the returned product or a refund.",
 ];
 
-export const CAROUSEL_IMG_ARR = [ '/img-1.jpg', '/img-2.jpg', '/img-3.jpg'];
-export const CAROUSEL_INTERVAL = 10000;
-export const BRAND = "/brand.svg";
-export const CAROUSEL_INIT_STATE = 0;
-
 export const COPYRIGHT = "Charm Accessories";
-
 export const REGISTER = "SignIn";
 export const NAV = [
   {name: "About Us", url: "/about"},
@@ -66,24 +52,6 @@ export const FOOTER_NAV = [
     { name: "About Us", url: "/about" },
     { name: "Contact Us", url: "/contact" },
   ];
-
-export const LOGO = "/logo.png";
-
-export const ICON_LIST = [
-  { icon: "cm-font-heart", url: ""},
-  { icon: "cm-font-facebook", url: ""},
-  { icon: "cm-font-x-twitter", url: ""},
-  { icon: "cm-font-pinterest", url: ""}
-]
-
-export const CART_CLOSED_POSITION = "-410px";
-export const CART_OPENED_POSITION = "0px";
-
-// export const S3_ALBUM_NAME = "all-produkte";
-// export const AWS_BUCKET_NAME="wwurm-mackenzie";
-// export const AWS_REGION="eu-west-2";
-
-// export const CART_KEY = "wwurm-access-key";
 
 export const S3_ALBUM_NAME = "all-products";
 export const AWS_BUCKET_NAME="charm-mackenzie";

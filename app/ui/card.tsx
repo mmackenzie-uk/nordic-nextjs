@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import BtnBuy from "../ui-client/btn-buy";
 import { BtnLike } from "./btns";
-import { IMAGE_PREFIX } from "../template/s3-configuration";
+import { IMAGE_PREFIX } from "../templates/s3-configuration";
 import { IProductDTO } from "../DTO/productDTO";
 
 export default function Card({ productDTO }: {

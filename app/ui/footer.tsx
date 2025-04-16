@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FOOTER_NAV, COPYRIGHT} from '../template/template';
+import { FOOTER_NAV, COPYRIGHT} from '../templates/template';
 
 export default function Footer() {
     return <>

@@ -7,7 +7,7 @@ import {
     OPEN_HOURS, 
     MAP_CAPTION, 
     MAP_IMG 
-} from "@/app/template/template";
+} from "@/app/templates/template";
 
 export default function Contact() {
     return (

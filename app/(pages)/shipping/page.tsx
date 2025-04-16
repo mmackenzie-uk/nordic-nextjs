@@ -8,7 +8,7 @@ import {
     DELIVERY,
     PAYMENT,
     EXCHANGE
-} from "@/app/template/template";
+} from "@/app/templates/template";
 
 export default function Shipping() {
     return (

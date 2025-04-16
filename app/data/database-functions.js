@@ -1,9 +1,7 @@
-import categories from "./categories.json" with {type: "json"};
-import seedDTOs from "./seedDTOs.json" with {type: "json"};
 
 import { openDb } from './db.js' 
 
-async function createCategories() {
+async function createCategories(categories) {
   const db = await openDb()
   // Define table schema
   await db.exec(`
@@ -22,7 +20,7 @@ async function createCategories() {
   await db.close();
 }
 
-async function toDomain() {
+async function toDomain(seedDTOs) {
   const db = await openDb()
   const categories = await db.all('SELECT * FROM categories');
   const products = [];
@@ -92,13 +90,8 @@ async function createProducts(products) {
   await db.close();
 }
 
-async function seed() {
-  await createCategories();
-  const products = await toDomain();
-  await createProducts(products); 
-}  
-
-seed()
-  .catch(err => {
-    console.error(err.message)
-  })  
+export {
+  createCategories,
+  createProducts,
+  toDomain
+}

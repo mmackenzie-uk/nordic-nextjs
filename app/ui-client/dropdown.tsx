@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { ICategoryDTO } from "../DTO/categoryDTO";
-import { PRODUCTS_NAV_FIRST_NAME } from "../template/template";
+import { PRODUCTS_NAV_FIRST_NAME } from "../templates/template";
 
 
 export default function Dropdown({ list, name } : {
