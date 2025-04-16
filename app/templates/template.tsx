@@ -57,9 +57,9 @@ export {
 }
 
 export const MAP_IMG = "/map.png";
-export const SHIPPING_IMG = "/images/about.jpg"; 
-export const ABOUT_IMG = "/images/about.jpg";
-export const CONTACT_IMG = "/images/about.jpg";
+export const SHIPPING_IMG = "/about.jpg"; 
+export const ABOUT_IMG = "/about.jpg";
+export const CONTACT_IMG = "/about.jpg";
 export const CAROUSEL_IMG_ARR = [ '/img-1.jpg', '/img-2.jpg', '/img-3.jpg'];
 export const CAROUSEL_INTERVAL = 10000;
 // export const BRAND = "/brand.svg";

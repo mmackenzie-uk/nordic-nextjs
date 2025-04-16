@@ -7,8 +7,8 @@
     width: 100%;
     height: auto; 
     object-fit: cover;
-    border: 1px solid #ccc;
-    filter: brightness(99%);
+    border: 1px solid #f1f1f1;
+    filter: brightness(98%);
 }
 
 .card-caption {

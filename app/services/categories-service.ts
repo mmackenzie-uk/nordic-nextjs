@@ -30,8 +30,6 @@ class CategoriesService {
         const db = await openDb();
         const sql = `SELECT * FROM categories WHERE slug = "${slug}"`
         const res = await db.all(sql);
-
-        console.log("res ", res)
         return res[0] as ICategory;
     }
     async create(Category: ICategory) {

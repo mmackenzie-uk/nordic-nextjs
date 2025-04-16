@@ -25,6 +25,7 @@ export default function Carousel() {
           marginLeft: "-17%",
           top: "20%",
           zIndex: 1000,
+          // filter: "brightness(50%)"
       }}>
         <img className="overlay-img" src={BRAND} alt="brand" />
       </div>  

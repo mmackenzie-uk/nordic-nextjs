@@ -6,9 +6,6 @@ export default async function CategoryPage({ params, }: {params: Promise<{ slug:
     const { slug } = await params;
     const categoryDTO = await getCategory(slug);
     const products = await findAll(1, 30);
-
-    console.log("categoryDTO", slug, categoryDTO)
-    console.log("products ", products)
     let productsDTO;
     if (categoryDTO.id) {
         productsDTO = await findByCategory(categoryDTO.id, 1, 10);  
