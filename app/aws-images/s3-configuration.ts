@@ -1,4 +1,4 @@
-import { S3_ALBUM_NAME, AWS_BUCKET_NAME } from '../templates/template';
+import { S3_ALBUM_NAME, AWS_BUCKET_NAME } from '../templates';
 
 export const HREF = `https://${AWS_BUCKET_NAME}.s3.eu-west-2.amazonaws.com/`;
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { findAll, findByCategory } from "../actions/get-actions";
 import Card from "../ui/card";
 import { IProductDTO } from "../DTO/productDTO";
+import { LOAD_MORE, ALL_PRODUCT_LOADED } from "../templates";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -51,14 +52,16 @@ export default function ProductsList({
         {
             hasMoreData ?
                 <button onClick={loadMore} className="products-list-btn">
-                    Mehr laden
+                    {LOAD_MORE}
                 </button>
             :
                 <div className="products-list-notify">
-                    <span>Alle Produkte wurden geladen.</span>
+                    <span>{ALL_PRODUCT_LOADED}</span>
                 </div>
         }
         </section>
     </>
   );
 }
+
+  

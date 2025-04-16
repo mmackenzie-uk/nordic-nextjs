@@ -71,3 +71,6 @@ export const BRAND_WIDTH = "30%";
 export const BRAND_LEFT = "72%";
 export const BRAND_MARGIN_LEFT = "-17%";
 export const BRAND_TOP = "20%";
+
+export const LOAD_MORE = "Load More";
+export const ALL_PRODUCT_LOADED = "All products have been loaded.";

@@ -35,8 +35,12 @@ import {
   BRAND_WIDTH,
   BRAND_LEFT,
   BRAND_MARGIN_LEFT,
-  BRAND_TOP
+  BRAND_TOP,
+  LOAD_MORE,
+  ALL_PRODUCT_LOADED
 } from "./charm";
+
+
 
 export { 
   SHOP, 
@@ -75,9 +79,10 @@ export {
   BRAND_WIDTH,
   BRAND_LEFT,
   BRAND_MARGIN_LEFT,
-  BRAND_TOP
+  BRAND_TOP,
+  LOAD_MORE,
+  ALL_PRODUCT_LOADED
 }
-
 
 export const CAROUSEL_INTERVAL = 10000;
 

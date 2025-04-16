@@ -64,9 +64,10 @@ export const CONTACT_IMG = "/wwurm/about.jpg";
 export const CAROUSEL_IMG_ARR = [ '/wwurm/img-1.jpg', '/wwurm/img-2.jpg', '/wwurm/img-3.jpg'];
 export const LOGO = "/wwurm/logo.png";
 
-
-
 export const BRAND_WIDTH = "34%";
 export const BRAND_LEFT = "50%";
 export const BRAND_MARGIN_LEFT = "-17%";
 export const BRAND_TOP = "30%";
+
+export const LOAD_MORE = "Mehr laden";
+export const ALL_PRODUCT_LOADED = "Alle Produkte wurden geladen.";

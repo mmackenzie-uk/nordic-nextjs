@@ -1,6 +1,6 @@
 "use client"
 
-import { CART_KEY } from "../templates/template";
+import { CART_KEY } from "../templates";
 import { ICartItem } from "../domain/cart";
 import { ICallback, IStore } from "../domain/cart-interface";
 

@@ -1,7 +1,7 @@
 "use server"
 
 import AWS from 'aws-sdk';
-import { S3_ALBUM_NAME, AWS_BUCKET_NAME, AWS_REGION } from '../templates/template';
+import { S3_ALBUM_NAME, AWS_BUCKET_NAME, AWS_REGION } from '../templates';
 
 import {
     S3Client,

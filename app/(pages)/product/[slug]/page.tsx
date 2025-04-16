@@ -2,7 +2,7 @@ import { BtnNext, BtnPrev } from "@/app/ui/btns";
 import Card from "@/app/ui/card";
 import Link from "next/link";
 
-import { ICON_LIST} from "@/app/templates/template";
+import { ICON_LIST} from "@/app/templates";
 import { getProductPageData } from "@/app/actions/get-actions";
 import CartAddWidget from "@/app/ui-client/cart-add-widget";
 import ImageWidget from "@/app/ui-client/image-widget";

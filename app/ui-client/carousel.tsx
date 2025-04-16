@@ -11,7 +11,7 @@ import {
   BRAND_LEFT,
   BRAND_MARGIN_LEFT,
   BRAND_TOP 
-} from "../templates/template";
+} from "../templates";
 
 const LEN = CAROUSEL_IMG_ARR.length;
 
