@@ -1,5 +1,14 @@
+import * as fs from 'fs';
 
 import { openDb } from './db.js' 
+
+function deleteDb() {
+  fs.unlink('./mydb.db', function (err) {
+    if (!err) {
+      console.log('File deleted!');
+    }
+  });
+}
 
 async function createCategories(categories) {
   const db = await openDb()
@@ -20,11 +29,11 @@ async function createCategories(categories) {
   await db.close();
 }
 
-async function toDomain(seedDTOs) {
+async function toDomain(productsDTO) {
   const db = await openDb()
   const categories = await db.all('SELECT * FROM categories');
   const products = [];
-  seedDTOs.map((dataObject) => {
+  productsDTO.map((dataObject) => {
     // For ease of entering data, catgeory is entered by slug. Convert slug to Id
     const category = categories.find(({ slug }) => (slug === dataObject.category));
 
@@ -90,8 +99,13 @@ async function createProducts(products) {
   await db.close();
 }
 
+async function seed(categoriesDTO, productsDTO) {
+  deleteDb();
+  await createCategories(categoriesDTO);
+  const products = await toDomain(productsDTO);
+  await createProducts(products); 
+}  
+
 export {
-  createCategories,
-  createProducts,
-  toDomain
+  seed
 }
