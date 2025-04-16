@@ -31,7 +31,11 @@ import {
   ABOUT_IMG,
   CONTACT_IMG,
   CAROUSEL_IMG_ARR,
-  LOGO
+  LOGO,
+  BRAND_WIDTH,
+  BRAND_LEFT,
+  BRAND_MARGIN_LEFT,
+  BRAND_TOP
 } from "./charm";
 
 export { 
@@ -67,7 +71,11 @@ export {
   ABOUT_IMG,
   CONTACT_IMG,
   CAROUSEL_IMG_ARR,
-  LOGO
+  LOGO,
+  BRAND_WIDTH,
+  BRAND_LEFT,
+  BRAND_MARGIN_LEFT,
+  BRAND_TOP
 }
 
 

@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from "react";
 
-import { CAROUSEL_IMG_ARR, CAROUSEL_INTERVAL, BRAND, CAROUSEL_INIT_STATE } from "../templates/template";
+import { 
+  CAROUSEL_IMG_ARR, 
+  CAROUSEL_INTERVAL, 
+  BRAND, 
+  CAROUSEL_INIT_STATE,
+  BRAND_WIDTH,
+  BRAND_LEFT,
+  BRAND_MARGIN_LEFT,
+  BRAND_TOP 
+} from "../templates/template";
 
 const LEN = CAROUSEL_IMG_ARR.length;
 
@@ -17,15 +26,13 @@ export default function Carousel() {
 
   return (
     <div className="container">  
-      {/* <div className="overlay-wrap"> */}
       <div style={{
           position: "absolute",
-          width: "30%",
-          left: "72%",
-          marginLeft: "-17%",
-          top: "20%",
+          width: BRAND_WIDTH,
+          left: BRAND_LEFT,
+          marginLeft: BRAND_MARGIN_LEFT,
+          top: BRAND_TOP,
           zIndex: 1000,
-          // filter: "brightness(50%)"
       }}>
         <img className="overlay-img" src={BRAND} alt="brand" />
       </div>  

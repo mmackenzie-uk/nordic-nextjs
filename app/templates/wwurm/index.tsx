@@ -66,4 +66,7 @@ export const LOGO = "/wwurm/logo.png";
 
 
 
-
+export const BRAND_WIDTH = "34%";
+export const BRAND_LEFT = "50%";
+export const BRAND_MARGIN_LEFT = "-17%";
+export const BRAND_TOP = "30%";

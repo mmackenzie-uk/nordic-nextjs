@@ -27,14 +27,6 @@
   }
   
   /* Overlay */
-  .overlay-wrap {
-    position: absolute;
-    width: 34%;
-    left: 50%;
-    margin-left: -17%;
-    top: 30%;
-    z-index: 1000;
-  }
   
   .overlay-img {
     font-size: 0;
@@ -87,7 +79,7 @@
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    background-color: #aaa;
+    background-color: #333;
   }
   .marker-dots li button:focus {
     outline: 0;
@@ -95,6 +87,6 @@
   .marker-dots li.marker-active button {
     width: 10px;
     height: 10px;
-    border: 2px solid #aaa;
+    border: 2px solid #333;
     background: 0 0;
   }

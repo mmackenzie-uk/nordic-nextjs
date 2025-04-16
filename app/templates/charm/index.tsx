@@ -66,3 +66,8 @@ export const ABOUT_IMG = "/charm/about.jpg";
 export const CONTACT_IMG = "/charm/about.jpg";
 export const CAROUSEL_IMG_ARR = [ '/charm/img-1.jpg', '/charm/img-2.jpg', '/charm/img-3.jpg'];
 export const LOGO = "/charm/logo.png";
+
+export const BRAND_WIDTH = "30%";
+export const BRAND_LEFT = "72%";
+export const BRAND_MARGIN_LEFT = "-17%";
+export const BRAND_TOP = "20%";
