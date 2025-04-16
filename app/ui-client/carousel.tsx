@@ -17,9 +17,17 @@ export default function Carousel() {
 
   return (
     <div className="container">  
-      {/* <div className="overlay-wrap">
+      {/* <div className="overlay-wrap"> */}
+      <div style={{
+          position: "absolute",
+          width: "30%",
+          left: "72%",
+          marginLeft: "-17%",
+          top: "20%",
+          zIndex: 1000,
+      }}>
         <img className="overlay-img" src={BRAND} alt="brand" />
-      </div>   */}
+      </div>  
       <ul className="marker-dots"> 
         {
           CAROUSEL_IMG_ARR.map((_, idx) => {
