@@ -9,7 +9,7 @@
         "largeImage": "rose-necklace.jpg",
         "availability": 10,
         "slug": "rose-necklace",
-        "category": "necklace"
+        "category": "necklaces"
     },
     {
         "id": 2,
@@ -45,7 +45,7 @@
         "largeImage": "cubic-necklace.jpg",
         "availability": 10,
         "slug": "cubic-necklace",
-        "category": "necklace"
+        "category": "necklaces"
     },
     {
         "id": 5,
@@ -69,7 +69,7 @@
         "largeImage": "flower-bouquet-necklace.jpg",
         "availability": 10,
         "slug": "flower-bouquet-necklace",
-        "category": "necklace"
+        "category": "necklaces"
 
     },
     {
@@ -263,7 +263,7 @@
         "largeImage": "tiger-tooth-necklace.jpg",
         "availability": 10,
         "slug": "tiger-tooth-necklace",
-        "category": "necklace"
+        "category": "necklaces"
     },
     {
         "id": 23,

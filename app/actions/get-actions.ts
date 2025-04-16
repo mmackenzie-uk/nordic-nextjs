@@ -11,6 +11,7 @@ import { productsService } from "../services/products-service";
 export async function getCategories() {
     const categories = await categoriesService.get();
     const categoriesDTO = fromCategoriesDomain(categories)
+    console.log("categoriesDTO ", categoriesDTO)
     return categoriesDTO;
 }
 

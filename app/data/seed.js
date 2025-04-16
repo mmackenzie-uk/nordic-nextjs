@@ -1,5 +1,5 @@
-import categories from "./categories.json" with {type: "json"};
-import products from "./products.json" with {type: "json"};
+import categoriesSeedDTO from "./categories.json" with {type: "json"};
+import productsSeedDTO from "./products.json" with {type: "json"};
 
 import { openDb } from './db.js' 
 
@@ -34,26 +34,29 @@ async function setup() {
 
   const arrCat = [];
 
-  categories.map(({name, slug}) => { 
+  categoriesSeedDTO.map(({name, slug}) => { 
     const pr = db.run(`INSERT INTO categories (name, slug) VALUES (?, ?)`, name, slug );
     arrCat.push(pr);
   })
   await Promise.all(arrCat);
+
+  const categories = await db.all('SELECT * FROM categories');
+
   const prodArr = [];
 
-  products.map(({ 
-    name, 
-    price, 
-    description, 
-    smallImage, 
-    mediumImage, 
-    largeImage, 
-    availability, 
-    slug, 
-    category
-  }) => {
+  productsSeedDTO.map((productSeedDTO) => {
+    const { 
+      name, 
+      price, 
+      description, 
+      smallImage, 
+      mediumImage, 
+      largeImage, 
+      availability, 
+      slug
+    } = productSeedDTO;
     // For ease of entering data, catgeory is entered by slug. Convert slug to Id
-    const catIndex = categories.findIndex(({ slug }) => (slug === category)) + 1;
+    const category = categories.find(({ slug }) => (slug === productSeedDTO.category));
     const pr = db.run(
       `INSERT INTO products ( name, 
                               smallImage,
@@ -72,7 +75,7 @@ async function setup() {
                                 description,
                                 availability, 
                                 Number(price * 100), 
-                                catIndex
+                                category.id
     );
     prodArr.push(pr);
   })
