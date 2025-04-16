@@ -15,26 +15,9 @@ export default async function Header() {
         <section className="section">
           <div className="flex">
             <nav className='flex-item-home'>
-              {/* <Link href='/'>
+              <Link href='/'>
                 <img src={LOGO} alt="logo" className='img-brand' width="600" height="238"/>
-              </Link> */}  
-              <Link href='/' style={{display: "flex", alignItems: "center"}}>
-                  <img 
-                      src={'brand-icon.png'} 
-                      alt="logo" 
-                      className='img-brand' 
-                      style={{
-                        width: "100px",
-                        height: "100px",
-                      }}
-                    />          
-                <img 
-                  src={'brand-grey.png'} 
-                  alt="logo" 
-                  className='img-brand' 
-                  style={{height: "75px"}}
-                  />
-              </Link>
+              </Link>  
             </nav>
             {/* <button> nav menu hidden for desktop
                 <img src="images/icon-hamburger.svg" alt="" aria-hidden="true" />
