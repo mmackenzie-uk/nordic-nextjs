@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import InputNumber from "./input-number";
 import { closeCart } from "../ts/ui";
-import { IMAGE_PREFIX } from "../templates/s3-configuration";
+import { IMAGE_PREFIX } from "../aws-images/s3-configuration";
 import { store } from "../services/cart-service";
 import { ICartItem } from "../domain/cart";
 

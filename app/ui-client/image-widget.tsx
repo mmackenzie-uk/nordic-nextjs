@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { IMAGE_PREFIX } from "../templates/s3-configuration";
+import { IMAGE_PREFIX } from "../aws-images/s3-configuration";
 
 export default function ImageWidget({ images, thumbs }: {
     images: Array<string>;

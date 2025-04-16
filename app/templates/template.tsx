@@ -25,6 +25,13 @@ import {
   AWS_BUCKET_NAME,
   AWS_REGION,
   CART_KEY, 
+  BRAND,
+  MAP_IMG,
+  SHIPPING_IMG,
+  ABOUT_IMG,
+  CONTACT_IMG,
+  CAROUSEL_IMG_ARR,
+  LOGO
 } from "./charm";
 
 export { 
@@ -54,18 +61,19 @@ export {
   AWS_BUCKET_NAME,
   AWS_REGION,
   CART_KEY, 
+  BRAND,
+  MAP_IMG,
+  SHIPPING_IMG,
+  ABOUT_IMG,
+  CONTACT_IMG,
+  CAROUSEL_IMG_ARR,
+  LOGO
 }
 
-export const MAP_IMG = "/map.png";
-export const SHIPPING_IMG = "/about.jpg"; 
-export const ABOUT_IMG = "/about.jpg";
-export const CONTACT_IMG = "/about.jpg";
-export const CAROUSEL_IMG_ARR = [ '/img-1.jpg', '/img-2.jpg', '/img-3.jpg'];
+
 export const CAROUSEL_INTERVAL = 10000;
-// export const BRAND = "/brand.svg";
-export const BRAND = "/charm-brand-logo.png";
+
 export const CAROUSEL_INIT_STATE = 0;
-export const LOGO = "/logo.png";
 export const ICON_LIST = [
   { icon: "cm-font-heart", url: ""},
   { icon: "cm-font-facebook", url: ""},

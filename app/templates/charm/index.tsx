@@ -58,3 +58,11 @@ export const AWS_BUCKET_NAME="charm-mackenzie";
 export const AWS_REGION="eu-west-2";
 
 export const CART_KEY = "charm-access-key";
+
+export const BRAND = "/charm/brand.png";
+export const MAP_IMG = "/charm/map.png";
+export const SHIPPING_IMG = "/charm/about.jpg"; 
+export const ABOUT_IMG = "/charm/about.jpg";
+export const CONTACT_IMG = "/charm/about.jpg";
+export const CAROUSEL_IMG_ARR = [ '/charm/img-1.jpg', '/charm/img-2.jpg', '/charm/img-3.jpg'];
+export const LOGO = "/charm/logo.png";
