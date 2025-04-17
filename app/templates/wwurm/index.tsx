@@ -22,15 +22,6 @@ export const NAV = [
   {name: "Das Gustergut", url: "/about"},
   {name: "Kontakt", url: "/contact"}
 ]
-export const PRODUCTS_NAV = [
-    { url: "/", name: "Alle Produkte" },
-    { url: "/edelbrand/", name: "Edelbrand" },
-    { url: "/wein/", name: "Wein" },
-    { url: "/schaumwein/", name: "Schaumwein" },
-    { url: "/most/", name: "Most" },
-    { url: "/saft/", name: "Saft" },
-    { url: "/pesto-fruchtaufstrich/", name: "Pesto und Fruchtaufstriche" }
-  ];
   
 export const FOOTER_NAV = [
     { name: "Häufige Fragen", url: "/faq" },
