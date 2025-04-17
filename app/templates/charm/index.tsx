@@ -59,7 +59,7 @@ module.exports = {
   CONTACT_IMG: "/charm/about.jpg",
   CAROUSEL_IMG_ARR: [ '/charm/img-1.jpg', '/charm/img-2.jpg', '/charm/img-3.jpg'],
   LOGO: "/charm/logo.png",
-  BRAND_WIDTH: "30%",
+  BRAND_WIDTH: "27%",
   BRAND_LEFT: "72%",
   BRAND_MARGIN_LEFT: "-17%",
   BRAND_TOP: "20%",

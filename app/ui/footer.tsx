@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FOOTER_NAV, COPYRIGHT} from '../templates';
+const { FOOTER_NAV, COPYRIGHT} = require('../templates');
 
 export default function Footer() {
     return <>
@@ -9,7 +9,7 @@ export default function Footer() {
                         <nav className="flex-item-nav">
                             <ul className="list-footer" role="list">
                             {
-                                FOOTER_NAV.map(({ name, url }) => <li key={name}><Link href={url}>{name}</Link></li>)
+                                FOOTER_NAV.map(({ name, url }: { name: string, url: string}) => <li key={name}><Link href={url}>{name}</Link></li>)
                             }
                             </ul>
                         </nav>                    

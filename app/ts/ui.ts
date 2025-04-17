@@ -1,4 +1,4 @@
-import { CART_CLOSED_POSITION, CART_OPENED_POSITION } from "../templates";
+const { CART_CLOSED_POSITION, CART_OPENED_POSITION } = require("../templates");
 
 export const openCart = () => {
     const sideNav = document.getElementById("cart-aside");

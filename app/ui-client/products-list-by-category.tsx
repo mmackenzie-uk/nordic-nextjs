@@ -3,7 +3,7 @@ import { useState } from "react";
 import { findAll, findByCategory } from "../actions/get-actions";
 import Card from "../ui/card";
 import { IProductDTO } from "../DTO/productDTO";
-import { LOAD_MORE, ALL_PRODUCT_LOADED } from "../templates";
+const { LOAD_MORE, ALL_PRODUCT_LOADED } = require("../templates");
 
 const ITEMS_PER_PAGE = 10;
 

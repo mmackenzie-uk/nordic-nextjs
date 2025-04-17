@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import Dropdown from '../ui-client/dropdown';
-import { NAV, LOGO, PRODUCTS_NAV_NAME, REGISTER } from '../templates';
+const { NAV, LOGO, PRODUCTS_NAV_NAME, REGISTER } = require('../templates');
 import SideCart from '../ui-client/cart-aside';
 import BtnCart from '../ui-client/btn-cart';
 import { getCategories } from '../actions/get-actions';
@@ -28,7 +28,7 @@ export default async function Header() {
               <ul className="list-products" role="list">
                 <Dropdown list={categories} name={PRODUCTS_NAV_NAME} /> 
                 {
-                  NAV.map(({ name, url }) => <li key={name}><Link href={url}>{name}</Link></li>)
+                  NAV.map(({ name, url }: { name: string, url: string }) => <li key={name}><Link href={url}>{name}</Link></li>)
                 }
               </ul>
             </nav>

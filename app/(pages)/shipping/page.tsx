@@ -1,5 +1,5 @@
 
-import { 
+const { 
     SHIPPING_IMG, 
     SHIPPING_TITLE, 
     DELIVERY_CAPTION, 
@@ -8,7 +8,7 @@ import {
     DELIVERY,
     PAYMENT,
     EXCHANGE
-} from "@/app/templates";
+} = require( "@/app/templates");
 
 export default function Shipping() {
     return (
@@ -30,19 +30,19 @@ export default function Shipping() {
                     <h2 className="shipping-caption">{DELIVERY_CAPTION}</h2>
                     <div className="shipping-text">
                     {
-                        DELIVERY.map((src, index) => <p key={index}>{src}</p>)
+                        DELIVERY.map((src: string, index: number) => <p key={index}>{src}</p>)
                     }
                     </div> 
                     <h2 className="shipping-caption">{PAYMENT_CAPTION}</h2>
                     <div className="shipping-text">
                     {
-                        PAYMENT.map((src, index) => <p key={index}>{src}</p>)
+                        PAYMENT.map((src: string, index: number) => <p key={index}>{src}</p>)
                     }
                     </div>
                     <h2 className="shipping-caption">{EXCHANGE_CAPTION}</h2>
                     <div className="shipping-text">
                     {
-                        EXCHANGE.map((src, index) => <p key={index}>{src}</p>)
+                        EXCHANGE.map((src: string, index: number) => <p key={index}>{src}</p>)
                     }
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 
-import { 
+const { 
     CONTACT_IMG, 
     CONTACT_TITLE, 
     CONTACT_ADDRESS_CAPTION, 
@@ -7,7 +7,7 @@ import {
     OPEN_HOURS, 
     MAP_CAPTION, 
     MAP_IMG 
-} from "@/app/templates";
+} = require("@/app/templates");
 
 export default function Contact() {
     return (
@@ -29,11 +29,11 @@ export default function Contact() {
                     <h2 className="contact-caption">{CONTACT_ADDRESS_CAPTION}</h2>
                     <div className="contact-text">
                         {
-                            ADDRESS.map((src, index) => <p key={index}>{src}</p>)
+                            ADDRESS.map((src: string, index: number) => <p key={index}>{src}</p>)
                         }
                         <br/>
                         {
-                            OPEN_HOURS.map((src, index) => <p key={index}>{src}</p>)
+                            OPEN_HOURS.map((src: string, index: number) => <p key={index}>{src}</p>)
                         }
                         <br/>
                      </div>

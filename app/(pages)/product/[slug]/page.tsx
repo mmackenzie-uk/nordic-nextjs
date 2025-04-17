@@ -2,7 +2,7 @@ import { BtnNext, BtnPrev } from "@/app/ui/btns";
 import Card from "@/app/ui/card";
 import Link from "next/link";
 
-import { ICON_LIST} from "@/app/templates";
+const { ICON_LIST} = require("@/app/templates");
 import { getProductPageData } from "@/app/actions/get-actions";
 import CartAddWidget from "@/app/ui-client/cart-add-widget";
 import ImageWidget from "@/app/ui-client/image-widget";
@@ -61,7 +61,7 @@ export default async function Product({ params, }: {params: Promise<{ slug: stri
                             <CartAddWidget productDTO={productDTO}/>
                             <ul className="product-icon" role="list">     
                             {
-                                ICON_LIST.map(({ icon }, idx) => <li key={idx}><a href="" ><i className={icon}></i></a></li>)
+                                ICON_LIST.map(({ icon } : {icon: string}, idx: number) => <li key={idx}><a href="" ><i className={icon}></i></a></li>)
                             }
                             </ul>
                         
