@@ -3,13 +3,15 @@ import Card from "@/app/ui/card";
 import Link from "next/link";
 
 const { ICON_LIST} = require("@/app/templates");
-import { getProductPageData } from "@/app/actions/get-actions";
+import { getCategories, getProductPageData } from "@/app/actions/get-actions";
 import CartAddWidget from "@/app/ui-client/cart-add-widget";
 import ImageWidget from "@/app/ui-client/image-widget";
 
-export default async function Product({ params, }: {params: Promise<{ slug: string }>}) {
+export default async function Product({ params }: {params: Promise<{ slug: string }>}) {
     const { slug } = await params;
     const { productDTO, productsDTO, categoryDTO} = await getProductPageData(slug);
+
+    const categories = await getCategories();
 
     type IBreadCrumb = { name: string; url: string; }
 
@@ -19,6 +21,8 @@ export default async function Product({ params, }: {params: Promise<{ slug: stri
         { name: productDTO.name, url: productDTO.name}
     ]
     const len = breadCrumbs.length;
+
+    const category = categories.find(category => category.id === productDTO.categoryId)?.name.toLowerCase();
 
     return (
         <>
@@ -50,7 +54,7 @@ export default async function Product({ params, }: {params: Promise<{ slug: stri
                 </section>
                 <section className="section">
                     <div className="product-grid">
-                        <ImageWidget thumbs={productDTO.smallImage} images={productDTO.largeImage} />
+                        <ImageWidget thumbs={productDTO.smallImage} images={productDTO.largeImage} category={category!} />
                         <div className="product-details">
                             <h2 className="product-name">{productDTO.name}</h2>
                             <p className="product-price">$ {productDTO.price.toFixed(2)}</p>
@@ -76,7 +80,7 @@ export default async function Product({ params, }: {params: Promise<{ slug: stri
                     <div className="grid-products-similar">
                     {
                         productsDTO && productsDTO.map((productDTO, index) => 
-                                    <Card productDTO={productDTO} key={index} />)
+                                    <Card productDTO={productDTO} key={index} categories={categories}/>)
                     }
                     </div>
                 </section>

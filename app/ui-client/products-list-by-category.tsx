@@ -3,6 +3,7 @@ import { useState } from "react";
 import { findAll, findByCategory } from "../actions/get-actions";
 import Card from "../ui/card";
 import { IProductDTO } from "../DTO/productDTO";
+import { ICategoryDTO } from "../DTO/categoryDTO";
 const { LOAD_MORE, ALL_PRODUCT_LOADED } = require("../templates");
 
 const ITEMS_PER_PAGE = 10;
@@ -10,11 +11,13 @@ const ITEMS_PER_PAGE = 10;
 export default function ProductsList({ 
     inititalProducts,
     categoryId,
-    hasMore
+    hasMore,
+    categories
 }: { 
     inititalProducts: Array<IProductDTO>,
     categoryId?: number,
-    hasMore: boolean
+    hasMore: boolean,
+    categories: Array<ICategoryDTO>
 }) {
 
   const [page, setPage] = useState(2);
@@ -44,7 +47,7 @@ export default function ProductsList({
         <section className="section">
             <div className="grid-products">
             {productsDTO.map((productDTO, index) => 
-                <Card productDTO={productDTO} key={index} />)
+                <Card productDTO={productDTO} key={index} categories={categories} />)
             }
             </div>
         </section>

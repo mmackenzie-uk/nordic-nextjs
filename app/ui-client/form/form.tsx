@@ -21,12 +21,8 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
 }) {
 
     const defaultCategoryName = categoriesDTO.find(category => category.id === formDTO.categoryId)?.name || "";
-    const defaultAlbumName = decodeURIComponent(albums[0].Prefix || "").replace("/", "")
     const [photos, setPhotos] = useState<ObjectList>([]);
     const [categoryName, setCategoryName] = useState(defaultCategoryName.toLowerCase()); 
-    // const handleAlbums: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    //     setAlbumName(e.target.value);    
-    // }
 
     console.log("defaultCategoryName ", defaultCategoryName)
     useEffect(() => {
@@ -80,7 +76,6 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                     <div>
                     <div className="edit-product-image-header">
                         <h2 className="edit-product-image-header-title">Images:</h2>
-                        {/* <Albums albumName={albumName} handleAlbums={handleAlbums} albums={albums}/> */}
                     </div>    
                     <div className="bucket-image-widget-container" >
                         <ul className="bucket-image-widget-list" role="list">

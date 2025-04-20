@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react";
-import { IMAGE_PREFIX } from "../aws-images/s3-configuration";
+import { HREF, IMAGE_PREFIX } from "../aws-images/s3-configuration";
 
-export default function ImageWidget({ images, thumbs }: {
+export default function ImageWidget({ images, thumbs, category }: {
     images: Array<string>;
     thumbs: Array<string>;
+    category: string;
 }) {
     const [selected, setSelected] = useState(0);
     const handleSelect = (index: number) => setSelected(index);
@@ -14,7 +15,9 @@ export default function ImageWidget({ images, thumbs }: {
         <ul className="thumbnail-list" role="list">
         {
             thumbs.map((thumb, index) => {
-                const src = IMAGE_PREFIX + encodeURIComponent(thumb); 
+                // const src = IMAGE_PREFIX + encodeURIComponent(thumb); 
+                const src = HREF + category!.toLowerCase() + "/" + encodeURIComponent(thumb); 
+                
                 return ( 
                 <li key={index} className={`thumbnail ${(index === selected) ? "thumbnail-selected" : ""}`} >
                     <img 
@@ -30,7 +33,9 @@ export default function ImageWidget({ images, thumbs }: {
         <ul className="images-list" role="list">
         {
             images.map((image, index) => {
-                const src = IMAGE_PREFIX + encodeURIComponent(image);  
+               // const src = IMAGE_PREFIX + encodeURIComponent(image);  
+                const src = HREF + category!.toLowerCase() + "/" + encodeURIComponent(image); 
+
                 return (
                 <li key={index} className="product-image-wrap">
                     <img 
