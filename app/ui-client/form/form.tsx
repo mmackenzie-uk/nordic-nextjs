@@ -5,14 +5,13 @@ import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
 
 import { _Object, CommonPrefix } from "@aws-sdk/client-s3";
-import { ChangeEvent, ChangeEventHandler, useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 import { IFormState } from "../../validation/validate";
 import { ICategoryDTO } from "../../DTO/categoryDTO";
 import { IFormDTO } from "../../DTO/formDTO";
 import { ObjectList } from "aws-sdk/clients/s3";
 import { getPhotos } from "./getPhotos";
-import Albums from "./albums";
 
 export default function Form({ formDTO, edit, categoriesDTO, albums }: {
     formDTO: IFormDTO, 
@@ -20,21 +19,24 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
     albums: CommonPrefix[] 
     edit: boolean
 }) {
+
+    const defaultCategoryName = categoriesDTO.find(category => category.id === formDTO.categoryId)?.name || "";
     const defaultAlbumName = decodeURIComponent(albums[0].Prefix || "").replace("/", "")
     const [photos, setPhotos] = useState<ObjectList>([]);
-    const [albumName, setAlbumName] = useState(defaultAlbumName); 
-    const handleAlbums: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        setAlbumName(e.target.value);    
-    }
+    const [categoryName, setCategoryName] = useState(defaultCategoryName.toLowerCase()); 
+    // const handleAlbums: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    //     setAlbumName(e.target.value);    
+    // }
 
+    console.log("defaultCategoryName ", defaultCategoryName)
     useEffect(() => {
         (async function(){
-            const data = await getPhotos(albumName);
+            const data = await getPhotos(categoryName);
             setPhotos(data?.slice(1) || []);   
         })();
-    }, [albumName]);
+    }, [categoryName]);
 
-    const albumPhotosKey = encodeURIComponent(albumName) + "/"; 
+    const albumPhotosKey = encodeURIComponent(categoryName) + "/"; 
 
     const initialState: IFormState = { message: null, errors: {} };
     const [state, formAction] = useActionState(handleProduct, initialState);
@@ -78,7 +80,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                     <div>
                     <div className="edit-product-image-header">
                         <h2 className="edit-product-image-header-title">Images:</h2>
-                        <Albums albumName={albumName} handleAlbums={handleAlbums} albums={albums}/>
+                        {/* <Albums albumName={albumName} handleAlbums={handleAlbums} albums={albums}/> */}
                     </div>    
                     <div className="bucket-image-widget-container" >
                         <ul className="bucket-image-widget-list" role="list">
@@ -162,6 +164,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                                             name="categoryId" 
                                             value={id} 
                                             defaultChecked={id === formDTO.categoryId}
+                                            onChange={() => setCategoryName(name.toLowerCase())}
                                         />
                                         <label className="edit-form-category-label" htmlFor={slug}>{name}</label><br />
                                     </li>)

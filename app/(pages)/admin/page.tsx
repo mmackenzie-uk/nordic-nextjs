@@ -1,7 +1,7 @@
 
 import { deleteProduct } from "@/app/actions/delete-action";
-import { findAll, getCount } from "@/app/actions/get-actions"
-import { IMAGE_PREFIX } from "@/app/aws-images/s3-configuration";
+import { findAll, getCategories, getCount } from "@/app/actions/get-actions"
+import { HREF } from "@/app/aws-images/s3-configuration";
 import { BinIcon, AddIcon, EditIcon } from "@/app/icons-svg";
 
 import Pagination from "@/app/ui-client/pagination";
@@ -18,6 +18,8 @@ export default async function Page(props: { searchParams?: Promise<{ page?: stri
     const count = await getCount(ITEMS_PER_PAGE);  
     
     const productsDTO = await findAll(currentPage, ITEMS_PER_PAGE);
+
+    const categories = await getCategories();
 
     return (
         <div className="admin">
@@ -47,12 +49,14 @@ export default async function Page(props: { searchParams?: Promise<{ page?: stri
                     <span>Qty</span>
                 </li>
             {
-                productsDTO.map(({ name, id, price, availability, slug, smallImage }) => {
-                    const src = IMAGE_PREFIX + encodeURIComponent(smallImage[0]); 
+                productsDTO.map(({ name, id, price, availability, slug, smallImage, categoryId }) => {
+                    const category = categories.find(category => category.id === categoryId)
+                    const src = HREF + category!.name.toLowerCase() + "/" + encodeURIComponent(smallImage[0]); 
                     let deleteProductWithId;
                     if (id) {
                         deleteProductWithId = deleteProduct.bind(null, id);
                     }
+
                     return (
                         <li key={id} className="admin-list-item">
                             <span>{id}</span>
