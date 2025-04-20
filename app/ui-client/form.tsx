@@ -5,21 +5,48 @@ import { ALBUM_PHOTO_KEY, HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
 
 import { _Object } from "@aws-sdk/client-s3";
-import { useActionState } from "react";
+import { ChangeEventHandler, useActionState } from "react";
 
 import { IFormState } from "../validation/validate";
 import { ICategoryDTO } from "../DTO/categoryDTO";
 import { IFormDTO } from "../DTO/formDTO";
+import { CommonPrefixList } from "aws-sdk/clients/s3";
 
-export default function Form({ formDTO, edit, photos, categoriesDTO }: {
+function ListAlbums({ 
+  handleSelect, 
+  albumName, 
+  albums 
+} : { 
+  albums:CommonPrefixList, 
+  albumName: string, 
+  handleSelect: ChangeEventHandler
+}) {   
+    return (
+        <select  value={albumName} onChange={handleSelect}  >
+        {
+            albums.map((commonPrefix) => {
+                let prefix = commonPrefix.Prefix;
+                let albumName = decodeURIComponent(prefix!.replace("/", ""));
+                return  <option key={albumName} style={{margin: "5px"}} value={albumName}>
+                        {albumName}
+                        </option>
+            })
+        }
+        </select>
+    )
+}
+
+export default function Form({ formDTO, edit, categoriesDTO }: {
     formDTO: IFormDTO, 
     categoriesDTO: Array<ICategoryDTO>,
-    photos: _Object[],
+    // photos: _Object[],
     edit: boolean
 }) {
 
     const initialState: IFormState = { message: null, errors: {} };
     const [state, formAction] = useActionState(handleProduct, initialState);
+
+    
    
     return (
         <form className="product" action={formAction}>          
@@ -58,6 +85,7 @@ export default function Form({ formDTO, edit, photos, categoriesDTO }: {
                     <div>
                         <div className="edit-product-image-header">
                             <h2 className="edit-product-image-header-title">Images:</h2>
+
                             <div>({photos?.length})</div>
                         </div>
 

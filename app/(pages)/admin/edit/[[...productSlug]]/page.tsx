@@ -13,9 +13,9 @@ export default async function Page({ params, }: {params: Promise<{ productSlug: 
         edit = true;
     }
     const categoriesDTO = await getCategories();
-    const photos = await getPhotos() as _Object[];
+    // const photos = await getPhotos() as _Object[];
 
-    return <Form formDTO={formDTO} categoriesDTO={categoriesDTO} photos={photos} edit={edit} />
+    return <Form formDTO={formDTO} categoriesDTO={categoriesDTO} edit={edit} />
 
   }
 
