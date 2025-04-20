@@ -93,7 +93,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                                                     id={photoKey} 
                                                     value={name} 
                                                     name={"image"} 
-                                                    // defaultChecked={formDTO.smallImage!.includes(name)}
+                                                    defaultChecked={formDTO.smallImage!.includes(name)}
                                                 />
                                                 <img 
                                                     src={photoUrl} 
