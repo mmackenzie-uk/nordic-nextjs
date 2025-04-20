@@ -86,7 +86,6 @@ function ListAlbums({
   handleSelect: ChangeEventHandler
 }) {   
     return (
-      <>
       <select  value={albumName} onChange={handleSelect}  >
       {
           albums.map((commonPrefix) => {
@@ -99,7 +98,6 @@ function ListAlbums({
         }
 
       </select>
-      </>
     )
 }
 
