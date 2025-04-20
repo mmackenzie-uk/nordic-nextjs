@@ -1,7 +1,8 @@
 
 import { getFormData } from "@/app/actions/form-actions";
 import { getCategories } from "@/app/actions/get-actions";
-import Form from "@/app/ui-client/form";
+import { getAlbums } from "@/app/actions/s3-get-albums";
+import Form from "@/app/ui-client/form/form";
 import { _Object } from "@aws-sdk/client-s3";
 
 export default async function Page({ params, }: {params: Promise<{ productSlug: string }>}) {
@@ -12,8 +13,9 @@ export default async function Page({ params, }: {params: Promise<{ productSlug: 
         edit = true;
     }
     const categoriesDTO = await getCategories();
+    const albums = await getAlbums();
 
-    return <Form formDTO={formDTO} categoriesDTO={categoriesDTO} edit={edit} />
+    return <Form formDTO={formDTO} categoriesDTO={categoriesDTO} edit={edit} albums={albums!}/>
 
   }
 

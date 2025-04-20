@@ -12,7 +12,7 @@ export default function Albums({
     albumName: string 
 }) {   
     return ( 
-        <select  value={albumName} onChange={handleAlbums}  >
+        <select  value={albumName} onChange={handleAlbums} style={{marginBottom: "10px"}} >
         {
             albums.map((commonPrefix) => {
                 let prefix = commonPrefix.Prefix;

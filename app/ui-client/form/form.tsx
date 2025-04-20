@@ -1,47 +1,40 @@
 "use client"
 
 import { handleProduct } from "@/app/actions/form-actions";
-import { ALBUM_PHOTO_KEY, HREF } from "@/app/aws-images/s3-configuration";
+import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
 
-import { _Object } from "@aws-sdk/client-s3";
-import { ChangeEventHandler, useActionState } from "react";
+import { _Object, CommonPrefix } from "@aws-sdk/client-s3";
+import { ChangeEvent, ChangeEventHandler, useActionState, useEffect, useState } from "react";
 
-import { IFormState } from "../validation/validate";
-import { ICategoryDTO } from "../DTO/categoryDTO";
-import { IFormDTO } from "../DTO/formDTO";
-import { CommonPrefixList } from "aws-sdk/clients/s3";
+import { IFormState } from "../../validation/validate";
+import { ICategoryDTO } from "../../DTO/categoryDTO";
+import { IFormDTO } from "../../DTO/formDTO";
+import { ObjectList } from "aws-sdk/clients/s3";
+import { getPhotos } from "./getPhotos";
+import Albums from "./albums";
 
-function ListAlbums({ 
-  handleSelect, 
-  albumName, 
-  albums 
-} : { 
-  albums:CommonPrefixList, 
-  albumName: string, 
-  handleSelect: ChangeEventHandler
-}) {   
-    return (
-        <select  value={albumName} onChange={handleSelect}  >
-        {
-            albums.map((commonPrefix) => {
-                let prefix = commonPrefix.Prefix;
-                let albumName = decodeURIComponent(prefix!.replace("/", ""));
-                return  <option key={albumName} style={{margin: "5px"}} value={albumName}>
-                        {albumName}
-                        </option>
-            })
-        }
-        </select>
-    )
-}
-
-export default function Form({ formDTO, edit, categoriesDTO }: {
+export default function Form({ formDTO, edit, categoriesDTO, albums }: {
     formDTO: IFormDTO, 
     categoriesDTO: Array<ICategoryDTO>,
-    // photos: _Object[],
+    albums: CommonPrefix[] 
     edit: boolean
 }) {
+    const defaultAlbumName = decodeURIComponent(albums[0].Prefix || "").replace("/", "")
+    const [photos, setPhotos] = useState<ObjectList>([]);
+    const [albumName, setAlbumName] = useState(defaultAlbumName); 
+    const handleAlbums: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setAlbumName(e.target.value);    
+    }
+
+    useEffect(() => {
+        (async function(){
+            const data = await getPhotos(albumName);
+            setPhotos(data?.slice(1) || []);   
+        })();
+    }, [albumName]);
+
+    const albumPhotosKey = encodeURIComponent(albumName) + "/"; 
 
     const initialState: IFormState = { message: null, errors: {} };
     const [state, formAction] = useActionState(handleProduct, initialState);
@@ -83,47 +76,43 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
             <section className="section">
                 <div className="edit-product-grid">
                     <div>
-                        <div className="edit-product-image-header">
-                            <h2 className="edit-product-image-header-title">Images:</h2>
-
-                            <div>({photos?.length})</div>
-                        </div>
-
-                        <div className="bucket-image-widget-container">
-                            <ul className="bucket-image-widget-list" role="list">
-                            {
-                                photos.map((photo) => {   
-                                    const photoKey = photo.Key;                         
-                                    const photoUrl = HREF + encodeURIComponent(photoKey!);  
-                                    const name = photoKey!.replace(ALBUM_PHOTO_KEY, "");     
-                                    let title = name.replaceAll("-", " ");                
-                                    title = title.replaceAll(".jpg", "");                
-                                    return (
-                                        <li key={photoKey} className="bucket-image-widget-li">
-                                            <div className="bucket-image-widget-img-wrap">
-                                                <span className="bucket-image-widget-name">{title}</span>
-                                                <label>
-                                                    <input 
-                                                        type="checkbox" 
-                                                        id={photoKey} 
-                                                        value={name} 
-                                                        name={"image"} 
-                                                        defaultChecked={formDTO.smallImage!.includes(name)}
-                                                    />
-                                                    <img 
-                                                        src={photoUrl} 
-                                                        className="bucket-image-widget-img"
-                                                        alt="form image"
-                                                    />
-                                                </label>
-                                            </div>
-                                        </li>);
-                                    }
-                                )
-                            }
-                            </ul>
-                        </div>
+                    <div className="edit-product-image-header">
+                        <h2 className="edit-product-image-header-title">Images:</h2>
+                        <Albums albumName={albumName} handleAlbums={handleAlbums} albums={albums}/>
+                    </div>    
+                    <div className="bucket-image-widget-container" >
+                        <ul className="bucket-image-widget-list" role="list">
+                        {
+                            photos.map((photo) => {   
+                                const photoKey = photo.Key;                         
+                                const photoUrl = HREF + encodeURIComponent(photoKey!);  
+                                const name = photoKey!.replace(albumPhotosKey, "");                  
+                                return (
+                                    <li key={photoKey} className="bucket-image-widget-li">
+                                        <div className="bucket-image-widget-img-wrap" >
+                                            <label >
+                                                <input 
+                                                    type="checkbox" 
+                                                    id={photoKey} 
+                                                    value={name} 
+                                                    name={"image"} 
+                                                    // defaultChecked={formDTO.smallImage!.includes(name)}
+                                                />
+                                                <img 
+                                                    src={photoUrl} 
+                                                    className="bucket-image-widget-img"
+                                                    alt="form image"
+                                                    style={{border: "1px solid #bbb"}}
+                                                />
+                                            </label>
+                                        </div>
+                                    </li>);
+                                }
+                            )
+                        }
+                        </ul>
                     </div>
+                        </div>
                     
                     <div className="edit-product-details">
                         <label htmlFor="name" className="edit-form-label">Product Name:</label>
