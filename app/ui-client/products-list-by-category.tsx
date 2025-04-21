@@ -6,7 +6,7 @@ import { IProductDTO } from "../DTO/productDTO";
 import { ICategoryDTO } from "../DTO/categoryDTO";
 const { LOAD_MORE, ALL_PRODUCT_LOADED } = require("../templates");
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 export default function ProductsList({ 
     inititalProducts,
