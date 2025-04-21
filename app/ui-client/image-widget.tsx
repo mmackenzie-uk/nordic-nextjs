@@ -16,7 +16,7 @@ export default function ImageWidget({ images, thumbs, category }: {
         {
             thumbs.map((thumb, index) => {
                 // const src = IMAGE_PREFIX + encodeURIComponent(thumb); 
-                const src = HREF + category!.toLowerCase() + "/" + encodeURIComponent(thumb); 
+                const src = HREF + category + "/" + encodeURIComponent(thumb); 
                 
                 return ( 
                 <li key={index} className={`thumbnail ${(index === selected) ? "thumbnail-selected" : ""}`} >

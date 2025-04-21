@@ -1,14 +1,11 @@
 
-import { findByCategory, getCategory, findAll, getCategories } from "@/app/actions/get-actions";
+import { findByCategory, getCategory, getCategories } from "@/app/actions/get-actions";
 import ProductsListByCategory from "@/app/ui-client/products-list-by-category";
 
 export default async function CategoryPage({ params, }: {params: Promise<{ slug: string }>}) {
     const { slug } = await params;
     const categoryDTO = await getCategory(slug);
     const categories = await getCategories();
-    const products = await findAll(1, 30);
-
-    console.log("categ ", categories)
     let productsDTO;
     if (categoryDTO.id) {
         productsDTO = await findByCategory(categoryDTO.id, 1, 10);  
@@ -26,7 +23,6 @@ export default async function CategoryPage({ params, }: {params: Promise<{ slug:
                     inititalProducts={productsDTO} 
                     hasMore={true} 
                     categoryId={categoryDTO.id}
-                    categories={categories}
                 />
             }
         </>

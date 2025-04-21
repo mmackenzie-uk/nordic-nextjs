@@ -1,3 +1,4 @@
+import { ICategory } from "../domain/category";
 import { IProduct } from "../domain/product";
 import { IProductDTO } from "../DTO/productDTO";
 
@@ -11,7 +12,7 @@ export const fromProductDomain = ({
   largeImage,
   availability,
   slug,
-  categoryId} : IProduct) => {
+  categoryId} : IProduct, categories: Array<ICategory>) => {
   const productDTO: IProductDTO = {
     id,
     name,
@@ -22,15 +23,15 @@ export const fromProductDomain = ({
     largeImage: largeImage.replaceAll("\"", "").split(','),
     availability,
     slug,
-    categoryId
+    category: categories.find(category => category.id === categoryId)!.name.toLowerCase()
   }
   return  productDTO;
 }
 
-export const fromProductsDomain = (products: Array<IProduct>) => {
+export const fromProductsDomain = (products: Array<IProduct>, categories: Array<ICategory>) => {
   const arr: Array<IProductDTO> = [];
   products.forEach((product) => {
-      const response = fromProductDomain(product)
+      const response = fromProductDomain(product, categories)
       arr.push(response);
   });
   return arr;

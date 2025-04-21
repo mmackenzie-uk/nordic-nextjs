@@ -6,14 +6,12 @@ import { HREF, IMAGE_PREFIX } from "../aws-images/s3-configuration";
 import { IProductDTO } from "../DTO/productDTO";
 import { ICategoryDTO } from "../DTO/categoryDTO";
 
-export default function Card({ productDTO, categories }: {
+export default function Card({ productDTO }: {
     productDTO: IProductDTO;
-    categories: Array<ICategoryDTO>
 }) {
-    const { name, mediumImage, slug, categoryId } = productDTO;
+    const { name, mediumImage, slug, category } = productDTO;
     // const src = IMAGE_PREFIX + encodeURIComponent(mediumImage[0]); 
-    const category = categories.find(category => category.id === categoryId)
-    const src = HREF + category!.name.toLowerCase() + "/" + encodeURIComponent(mediumImage[0]); 
+    const src = HREF + category + "/" + encodeURIComponent(mediumImage[0]); 
     return (
         <div className="card">                   
             <Link href={`/product/${slug}`} className="card-img-wrap">

@@ -22,8 +22,6 @@ export default async function Product({ params }: {params: Promise<{ slug: strin
     ]
     const len = breadCrumbs.length;
 
-    const category = categories.find(category => category.id === productDTO.categoryId)?.name.toLowerCase();
-
     return (
         <>
             <div className="product"> 
@@ -54,7 +52,7 @@ export default async function Product({ params }: {params: Promise<{ slug: strin
                 </section>
                 <section className="section">
                     <div className="product-grid">
-                        <ImageWidget thumbs={productDTO.smallImage} images={productDTO.largeImage} category={category!} />
+                        <ImageWidget thumbs={productDTO.smallImage} images={productDTO.largeImage} category={productDTO.category!} />
                         <div className="product-details">
                             <h2 className="product-name">{productDTO.name}</h2>
                             <p className="product-price">$ {productDTO.price.toFixed(2)}</p>
@@ -80,7 +78,7 @@ export default async function Product({ params }: {params: Promise<{ slug: strin
                     <div className="grid-products-similar">
                     {
                         productsDTO && productsDTO.map((productDTO, index) => 
-                                    <Card productDTO={productDTO} key={index} categories={categories}/>)
+                                    <Card productDTO={productDTO} key={index} />)
                     }
                     </div>
                 </section>

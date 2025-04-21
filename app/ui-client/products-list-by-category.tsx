@@ -11,13 +11,11 @@ const ITEMS_PER_PAGE = 10;
 export default function ProductsList({ 
     inititalProducts,
     categoryId,
-    hasMore,
-    categories
+    hasMore
 }: { 
     inititalProducts: Array<IProductDTO>,
     categoryId?: number,
     hasMore: boolean,
-    categories: Array<ICategoryDTO>
 }) {
 
   const [page, setPage] = useState(2);
@@ -47,7 +45,7 @@ export default function ProductsList({
         <section className="section">
             <div className="grid-products">
             {productsDTO.map((productDTO, index) => 
-                <Card productDTO={productDTO} key={index} categories={categories} />)
+                <Card productDTO={productDTO} key={index} />)
             }
             </div>
         </section>

@@ -15,20 +15,26 @@ export async function getCategories() {
 }
 
 export async function findAll(currentPage: number, ITEMS_PER_PAGE: number) {
+    const categories = await categoriesService.get();
+
     const products = await productsService.get(currentPage, ITEMS_PER_PAGE);
-    const productDTO = fromProductsDomain(products);
+    const productDTO = fromProductsDomain(products, categories);
     return productDTO;
 }
 
 export async function findByCategory(categoryId: number, currentPage: number, ITEMS_PER_PAGE: number) {
+    const categories = await categoriesService.get();
+
    const products = await productsService.getByCategory(categoryId, currentPage, ITEMS_PER_PAGE)
-   const productDTO = fromProductsDomain(products);
+   const productDTO = fromProductsDomain(products, categories);
    return productDTO;
 }
 
 export async function getProduct(slug: string) {
+    const categories = await categoriesService.get();
+
     const product = await productsService.getProductBySlug(slug);
-    const productDTO = fromProductDomain(product);
+    const productDTO = fromProductDomain(product, categories);
     return productDTO;
 }
 
@@ -45,19 +51,21 @@ export async function getCategoryById(id: number) {
 }
 
 export async function getSimilar(categoryId: number, id: number) {
+    const categories = await getCategories();
     const products = await productsService.getSimilar(categoryId, id);
-    const productDTO = fromProductsDomain(products);
+    const productDTO = fromProductsDomain(products, categories);
     return productDTO;
 }
 
 export async function getProductPageData(slug : string) {
+    const categories = await getCategories();
     const product = await productsService.getProductBySlug(slug);
     const category = await categoriesService.getById(product.categoryId);
     const products = await productsService.getSimilar(category.id, product.id);
 
     return { 
-        productDTO: fromProductDomain(product),
-        productsDTO: fromProductsDomain(products),
+        productDTO: fromProductDomain(product, categories),
+        productsDTO: fromProductsDomain(products, categories),
         categoryDTO: fromCategoryDomain(category)
     }
 }

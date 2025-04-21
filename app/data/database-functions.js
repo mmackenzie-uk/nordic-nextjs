@@ -100,12 +100,12 @@ async function createProducts(products) {
 }
 
 async function seed(categoriesDTO, productsDTO) {
-  deleteDb();
   await createCategories(categoriesDTO);
   const products = await toDomain(productsDTO);
   await createProducts(products); 
 }  
 
 export {
-  seed
+  seed,
+  deleteDb
 }

@@ -45,13 +45,13 @@ export default async function Page(props: { searchParams?: Promise<{ page?: stri
                     <span>Image</span>
                     <span>Name</span>
                     <span>Slug</span>
+                    <span>Category</span>
                     <span>Price</span>
                     <span>Qty</span>
                 </li>
             {
-                productsDTO.map(({ name, id, price, availability, slug, smallImage, categoryId }) => {
-                    const category = categories.find(category => category.id === categoryId)
-                    const src = HREF + category!.name.toLowerCase() + "/" + encodeURIComponent(smallImage[0]); 
+                productsDTO.map(({ name, id, price, availability, slug, smallImage, category }) => {
+                    const src = HREF + category + "/" + encodeURIComponent(smallImage[0]); 
                     let deleteProductWithId;
                     if (id) {
                         deleteProductWithId = deleteProduct.bind(null, id);
@@ -65,6 +65,7 @@ export default async function Page(props: { searchParams?: Promise<{ page?: stri
                             </div>
                             <span>{name}</span>
                             <span>{slug}</span>
+                            <span>{category}</span>
                             <span>{price}</span>
                             <span>{availability}</span>
                             <div className="admin-btn-wrap">

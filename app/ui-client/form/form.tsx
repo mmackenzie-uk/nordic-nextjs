@@ -76,7 +76,10 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                     <div>
                     <div className="edit-product-image-header">
                         <h2 className="edit-product-image-header-title">Images:</h2>
-                    </div>    
+                    </div>   
+                    <div>
+                        <p>{formDTO.smallImage}</p>
+                    </div> 
                     <div className="bucket-image-widget-container" >
                         <ul className="bucket-image-widget-list" role="list">
                         {
