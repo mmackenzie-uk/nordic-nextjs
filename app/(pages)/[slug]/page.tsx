@@ -8,7 +8,7 @@ export default async function CategoryPage({ params, }: {params: Promise<{ slug:
     const categories = await getCategories();
     let productsDTO;
     if (categoryDTO.id) {
-        productsDTO = await findByCategory(categoryDTO.id, 1, 10);  
+        productsDTO = await findByCategory(categoryDTO.id, 1, 12);  
     }
     return (
         <>
