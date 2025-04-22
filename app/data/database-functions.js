@@ -39,7 +39,7 @@ async function toDomain(productsDTO) {
 
     const product = {
       name: dataObject.name,
-      price: Number(dataObject.price * 100), 
+      price: Number(dataObject.price), 
       description: dataObject.description, 
       smallImage: JSON.stringify(dataObject.smallImage), 
       mediumImage: JSON.stringify(dataObject.mediumImage), 
@@ -99,13 +99,18 @@ async function createProducts(products) {
   await db.close();
 }
 
-async function seed(categoriesDTO, productsDTO) {
-  await createCategories(categoriesDTO);
+async function seedProducts(productsDTO) {
   const products = await toDomain(productsDTO);
   await createProducts(products); 
 }  
 
+async function seedCategories(categoriesDTO) {
+  await createCategories(categoriesDTO);
+}  
+
+
 export {
-  seed,
+  seedProducts,
+  seedCategories,
   deleteDb
 }
