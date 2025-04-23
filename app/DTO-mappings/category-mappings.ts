@@ -13,7 +13,7 @@ export const toCategoryDomain = ({ name, slug} : ICategoryDTO) => {
 export const fromCategoryDomain = ({id, name, slug} : ICategory) => {
   const categoryDTO: ICategoryDTO = {
     id,
-    name,
+    name: name.toLowerCase(),
     slug
   }
   return  categoryDTO;

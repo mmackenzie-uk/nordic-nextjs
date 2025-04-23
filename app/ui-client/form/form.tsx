@@ -5,7 +5,7 @@ import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
 
 import { _Object, CommonPrefix } from "@aws-sdk/client-s3";
-import { useActionState, useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useActionState, useEffect, useState } from "react";
 
 import { IFormState } from "../../validation/validate";
 import { ICategoryDTO } from "../../DTO/categoryDTO";
@@ -20,11 +20,19 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
     edit: boolean
 }) {
 
-    const defaultCategoryName = categoriesDTO.find(category => category.id === formDTO.categoryId)?.name || "";
-    const [photos, setPhotos] = useState<ObjectList>([]);
-    const [categoryName, setCategoryName] = useState(defaultCategoryName.toLowerCase()); 
+    const callback = (category: ICategoryDTO) => category.id === formDTO.categoryId
 
-    console.log("defaultCategoryName ", defaultCategoryName)
+    const defaultCategoryName = categoriesDTO.find(callback)?.name || "";
+
+    const [photos, setPhotos] = useState<ObjectList>([]);
+    const [categoryName, setCategoryName] = useState(defaultCategoryName); 
+    const [thumbs, setThumbs] = useState<Array<string>>(JSON.parse(formDTO.smallImage).split(","));
+    const [selected, setSelected] = useState(0);
+    const [len, setLen] = useState(JSON.parse(formDTO.smallImage).split(",").length);
+
+    const handleSelectThb = (index: number) => setSelected(index);
+
+
     useEffect(() => {
         (async function(){
             const data = await getPhotos(categoryName);
@@ -32,13 +40,30 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
         })();
     }, [categoryName]);
 
+    useEffect(() => {}, [thumbs.length]);
+
     const albumPhotosKey = encodeURIComponent(categoryName) + "/"; 
 
     const initialState: IFormState = { message: null, errors: {} };
     const [state, formAction] = useActionState(handleProduct, initialState);
 
-    
+    const handleSelect: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        setCategoryName(e.target.value);  
+        if (e.target.value === defaultCategoryName) {
+            setThumbs(JSON.parse(formDTO.smallImage).split(","));        
+        } else {
+           setThumbs([])
+        }
+      }
    
+    const handleSelectImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const img = e.target.value;
+        const index = thumbs.indexOf(img);
+        (index > -1) ? thumbs.splice(index, 1) : thumbs.push(img);
+        setThumbs(thumbs);
+        setLen(thumbs.length);
+    }
+    
     return (
         <form className="product" action={formAction}>          
             <input 
@@ -49,7 +74,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
             />
             <section className="section">
                 <div className="edit-product-header">
-                    <h2 className="edit-product-title">{edit ? "Edit" : "Create"} Product</h2>
+                    <h2 className="edit-product-title">{edit ? "Edit" : "Create"} Product</h2>   
                     <div className="edit-btn-wrap">
                         <Link href="/admin" className="edit-btn-cancel">Cancel</Link>
                         <button className="edit-btn-save" type="submit">Save</button>
@@ -74,47 +99,55 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
             <section className="section">
                 <div className="edit-product-grid">
                     <div>
-                    <div className="edit-product-image-header">
-                        <h2 className="edit-product-image-header-title">Images:</h2>
-                    </div>   
-                    <div>
-                        <p>{formDTO.smallImage}</p>
-                    </div> 
-                    <div className="bucket-image-widget-container" >
-                        <ul className="bucket-image-widget-list" role="list">
-                        {
-                            photos.map((photo) => {   
-                                const photoKey = photo.Key;                         
-                                const photoUrl = HREF + encodeURIComponent(photoKey!);  
-                                const name = photoKey!.replace(albumPhotosKey, "");                  
-                                return (
-                                    <li key={photoKey} className="bucket-image-widget-li">
-                                        <div className="bucket-image-widget-img-wrap" >
-                                            <label >
-                                                <input 
-                                                    type="checkbox" 
-                                                    id={photoKey} 
-                                                    value={name} 
-                                                    name={"image"} 
-                                                    defaultChecked={formDTO.smallImage!.includes(name)}
-                                                />
-                                                <img 
-                                                    src={photoUrl} 
-                                                    className="bucket-image-widget-img"
-                                                    alt="form image"
-                                                    style={{border: "1px solid #bbb"}}
-                                                />
-                                            </label>
-                                        </div>
-                                    </li>);
-                                }
-                            )
-                        }
-                        </ul>
-                    </div>
+                        <div className="edit-product-image-header">
+                            <h2 className="edit-product-image-header-title">Images:</h2>
+                            <select  value={categoryName} onChange={handleSelect}  style={{marginBottom: "10px", padding: "5px"}}>
+                            {
+                                categoriesDTO.map(({ name }) => {
+                                    return  <option key={name} value={name}>
+                                            {name}
+                                            </option>
+                                })
+                            }
+                            </select>
+                        </div>   
+                        <div className="bucket-image-widget-container" >
+                            <ul className="bucket-image-widget-list" role="list">
+                            {
+                                photos.map((photo) => {   
+                                    const photoKey = photo.Key;                         
+                                    const photoUrl = HREF + encodeURIComponent(photoKey!);  
+                                    const name = photoKey!.replace(albumPhotosKey, "");                  
+                                    return (
+                                        <li key={photoKey} className="bucket-image-widget-li">
+                                            <div className="bucket-image-widget-img-wrap" >
+                                                <label >
+                                                    <input 
+                                                        type="checkbox" 
+                                                        id={photoKey} 
+                                                        value={name} 
+                                                        name={"image"} 
+                                                        onChange={handleSelectImage}
+                                                        defaultChecked={formDTO.smallImage!.includes(name)}
+                                                    />
+                                                    <img 
+                                                        src={photoUrl} 
+                                                        className="bucket-image-widget-img"
+                                                        alt="form image"
+                                                        style={{border: "1px solid #bbb"}}
+                                                    />
+                                                </label>
+                                            </div>
+                                        </li>);
+                                    }
+                                )
+                            }
+                            </ul>
                         </div>
+                    </div>
                     
                     <div className="edit-product-details">
+                       
                         <label htmlFor="name" className="edit-form-label">Product Name:</label>
                         <input 
                             type="text" 
@@ -123,26 +156,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                             defaultValue={formDTO.name} 
                             className="edit-form-name"
                         />
-                        <label htmlFor="price" className="edit-form-label">Price:</label><br/>
-                        <span className="product-price">$
-                            <input 
-                                className="edit-form-price"
-                                type="number" 
-                                id="price" 
-                                defaultValue={formDTO.price.toFixed(2)} 
-                                name="price" 
-                                min="1" 
-                                step=".1"
-                            />
-                        </span><br/>
-                        <label htmlFor="availability" className="edit-form-label">Quantity:</label><br/>
-                        <input 
-                            id="availability"
-                            name="availability"
-                            type="number" 
-                            className="edit-form-availability" 
-                            defaultValue={formDTO.availability}
-                        /> 
+                      
                         <br/>
                         <label htmlFor="description" className="edit-form-label">Description:</label>
                         <textarea 
@@ -151,33 +165,52 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                             className="edit-form-description"
                             defaultValue={formDTO.description}
                         />
-                        <label htmlFor="price" className="edit-form-label">Category:</label>
-                        <ul className="edit-form-categories" role="list">
-                            {
-                                categoriesDTO.map(({ name, id, slug }) => 
-                                    <li key={id} className="edit-form-category">
-                                        <input 
-                                            type="radio" 
-                                            id={slug} 
-                                            name="categoryId" 
-                                            value={id} 
-                                            defaultChecked={id === formDTO.categoryId}
-                                            onChange={() => setCategoryName(name.toLowerCase())}
-                                        />
-                                        <label className="edit-form-category-label" htmlFor={slug}>{name}</label><br />
-                                    </li>)
-                            }
-                        </ul>   
-                        {/* <div className="edit-form-new-category-flex">
-                            <input 
-                                type="text" 
-                                id="edit-form-new-category" 
-                                name="new-category" 
-                                defaultValue={"+ new category"} 
-                                className="edit-form-new-category"
-                            />
-                            <button className="edit-form-new-category-btn">+ Add</button>
-                        </div>  */}
+                         <div style={{display: "flex", justifyContent: "space-between"}}>
+                            <div>
+                                <label htmlFor="price" className="edit-form-label">Price $:</label>
+                                <input 
+                                    className="edit-form-price"
+                                    type="number" 
+                                    id="price" 
+                                    defaultValue={formDTO.price.toFixed(2)} 
+                                    name="price" 
+                                    min="1" 
+                                    step=".1"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="availability" className="edit-form-label">Stock Quantity:</label>
+                                <input 
+                                    id="availability"
+                                    name="availability"
+                                    type="number" 
+                                    className="edit-form-availability" 
+                                    defaultValue={formDTO.availability}
+                                /> 
+                            </div>     
+                        </div>
+                        <label htmlFor="price" className="edit-form-label">Select Default Image:</label>
+                        <ul className="form-thumbnail-list" role="list">
+                        {
+                            thumbs.map((thumb, index) => {
+                                // const src = IMAGE_PREFIX + encodeURIComponent(thumb); 
+                                const src = HREF + categoryName + "/" + encodeURIComponent(thumb); 
+                                
+                                return ( 
+                                <li key={index} className={`thumbnail ${(index === selected) ? "form-thumbnail-selected" : ""}`} >
+                                    <img 
+                                        src={src} 
+                                        onClick={() => handleSelectThb(index)} 
+                                        className="thumbnail-img"
+                                        alt="thumbnail image"
+                                    />
+                                </li>)
+                            })    
+                        } 
+                        </ul>
+                        <div>
+                            {/* <p>{formDTO.smallImage}</p> */}
+                        </div> 
                     </div>
                 </div>
             </section>
