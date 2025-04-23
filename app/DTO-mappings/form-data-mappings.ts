@@ -1,3 +1,4 @@
+import { ICategory } from "../domain/category";
 import { IProduct } from "../domain/product";
 import { IFormDTO } from "../DTO/formDTO";
 
@@ -8,13 +9,13 @@ const createSlug = (name: string | undefined) => {
     return slug.toLowerCase();
   }
 
-export const toFormDTO = (product?: IProduct) => {
+export const toFormDTO = (product: IProduct, categories: Array<ICategory>) => {
 
   const formDTO: IFormDTO = {
       name: "Product Name",
       description: "description",
       price: 1,
-      categoryId: -1,
+      category: "",
       smallImage: "",
       availability: 1
   }
@@ -23,21 +24,21 @@ export const toFormDTO = (product?: IProduct) => {
     formDTO.name = product.name;
     formDTO.description = product.description;
     formDTO.price = product.price / 10;
-    formDTO.categoryId = product.categoryId;
+    formDTO.category = categories.find(category => product.categoryId === category.id)!.name.toLowerCase();
     formDTO.smallImage = product.smallImage;
     formDTO.availability = product.availability;
   }
   return formDTO;
 }
 
-export const fromFormData = (request : FormData) => {
+export const fromFormData = (request : FormData, categories: Array<ICategory>) => {
   const name = request.get("name") as string;
   const product: IProduct = {
     price: Number(request.get("price")) * 100,
     name: name,
     id: request.get("id") ? Number(request.get("id")) : undefined,
     description: request.get("description") as string,
-    categoryId: Number(request.get("categoryId")),
+    categoryId: categories.find(category => category.name === request.get("category"))!.id,
     smallImage: request.getAll("image").toString(),
     mediumImage: request.getAll("image").toString(),
     largeImage: request.getAll("image").toString(),

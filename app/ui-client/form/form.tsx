@@ -4,7 +4,7 @@ import { handleProduct } from "@/app/actions/form-actions";
 import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
 
-import { _Object, CommonPrefix } from "@aws-sdk/client-s3";
+import { _Object } from "@aws-sdk/client-s3";
 import { ChangeEvent, ChangeEventHandler, useActionState, useEffect, useState } from "react";
 
 import { IFormState } from "../../validation/validate";
@@ -13,22 +13,17 @@ import { IFormDTO } from "../../DTO/formDTO";
 import { ObjectList } from "aws-sdk/clients/s3";
 import { getPhotos } from "./getPhotos";
 
-export default function Form({ formDTO, edit, categoriesDTO, albums }: {
+export default function Form({ formDTO, edit, categoriesDTO }: {
     formDTO: IFormDTO, 
     categoriesDTO: Array<ICategoryDTO>,
-    albums: CommonPrefix[] 
     edit: boolean
 }) {
 
-    const callback = (category: ICategoryDTO) => category.id === formDTO.categoryId
-
-    const defaultCategoryName = categoriesDTO.find(callback)?.name || "";
-
     const [photos, setPhotos] = useState<ObjectList>([]);
-    const [categoryName, setCategoryName] = useState(defaultCategoryName); 
-    const [thumbs, setThumbs] = useState<Array<string>>(JSON.parse(formDTO.smallImage).split(","));
+    const [categoryName, setCategoryName] = useState(formDTO.category); 
+    const [thumbs, setThumbs] = useState<Array<string>>(formDTO.smallImage.split(","));
     const [selected, setSelected] = useState(0);
-    const [len, setLen] = useState(JSON.parse(formDTO.smallImage).split(",").length);
+    const [len, setLen] = useState(formDTO.smallImage.split(",").length);
 
     const handleSelectThb = (index: number) => setSelected(index);
 
@@ -49,7 +44,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
 
     const handleSelect: ChangeEventHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setCategoryName(e.target.value);  
-        if (e.target.value === defaultCategoryName) {
+        if (e.target.value === formDTO.category) {
             setThumbs(JSON.parse(formDTO.smallImage).split(","));        
         } else {
            setThumbs([])
@@ -101,7 +96,7 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                     <div>
                         <div className="edit-product-image-header">
                             <h2 className="edit-product-image-header-title">Images:</h2>
-                            <select  value={categoryName} onChange={handleSelect}  style={{marginBottom: "10px", padding: "5px"}}>
+                            <select  name="category" value={categoryName} onChange={handleSelect}  style={{marginBottom: "10px", padding: "5px"}}>
                             {
                                 categoriesDTO.map(({ name }) => {
                                     return  <option key={name} value={name}>
@@ -195,15 +190,23 @@ export default function Form({ formDTO, edit, categoriesDTO, albums }: {
                             thumbs.map((thumb, index) => {
                                 // const src = IMAGE_PREFIX + encodeURIComponent(thumb); 
                                 const src = HREF + categoryName + "/" + encodeURIComponent(thumb); 
-                                
                                 return ( 
                                 <li key={index} className={`thumbnail ${(index === selected) ? "form-thumbnail-selected" : ""}`} >
-                                    <img 
-                                        src={src} 
-                                        onClick={() => handleSelectThb(index)} 
-                                        className="thumbnail-img"
-                                        alt="thumbnail image"
-                                    />
+                                    <label className="thb-select">
+                                        <input 
+                                            type="radio" 
+                                            name="radio" 
+                                            value={index}
+                                            checked={index === selected} 
+                                            onChange={() => handleSelectThb(index)} 
+                                            hidden
+                                        />
+                                        <img 
+                                            src={src} 
+                                            className="thumbnail-img"
+                                            alt="thumbnail image"
+                                        />
+                                    </label>
                                 </li>)
                             })    
                         } 

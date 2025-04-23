@@ -14,7 +14,7 @@ export const fromProductDomain = ({
   slug,
   categoryId} : IProduct, categories: Array<ICategory>) => {
 
-    console.log("price ", price)
+
   const productDTO: IProductDTO = {
     id,
     name,

@@ -9,6 +9,6 @@ export interface IProduct {
     largeImage: string; 
     availability: number; 
     slug: string;
-    categoryId: number;
+    categoryId?: number;
   }    
 

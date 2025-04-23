@@ -5,10 +5,16 @@ import { redirect } from "next/navigation";
 import { IFormState, ValidateProduct } from "../validation/validate";
 import { productsService } from "../services/products-service";
 import { fromFormData, toFormDTO } from "../DTO-mappings/form-data-mappings";
+import { categoriesService } from "../services/categories-service";
+import { getCategories } from "./get-actions";
 
 export async function handleProduct(prevState: IFormState, request: FormData) {
 
-    const product = fromFormData(request);
+    const categories = await getCategories();
+
+    const product = fromFormData(request, categories);
+
+    console.log("fm data ", request)
 
     // Validate form fields using Zod
     const validatedFields = ValidateProduct.safeParse({
@@ -42,7 +48,8 @@ export async function handleProduct(prevState: IFormState, request: FormData) {
 }
 
 export async function getFormData(slug: string) {
+    const categories = await categoriesService.get();
     const product = await productsService.getProductBySlug(slug);
-    const formDTO = toFormDTO(product);
+    const formDTO = toFormDTO(product, categories);
     return formDTO;
 }

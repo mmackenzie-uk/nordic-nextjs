@@ -41,9 +41,9 @@ async function toDomain(productsDTO) {
       name: dataObject.name,
       price: Number(dataObject.price), 
       description: dataObject.description, 
-      smallImage: JSON.stringify(dataObject.smallImage), 
-      mediumImage: JSON.stringify(dataObject.mediumImage), 
-      largeImage: JSON.stringify(dataObject.largeImage), 
+      smallImage: dataObject.smallImage, 
+      mediumImage: dataObject.mediumImage, 
+      largeImage: dataObject.largeImage, 
       availability: dataObject.availability, 
       slug: dataObject.slug,
       categoryId: category.id
