@@ -17,7 +17,8 @@ export const toFormDTO = (product: IProduct, categories: Array<ICategory>) => {
       price: 1,
       category: "",
       smallImage: "",
-      availability: 1
+      availability: 1,
+      defaultImage: 0
   }
   if (product) {
     formDTO.id = product.id;
@@ -27,6 +28,7 @@ export const toFormDTO = (product: IProduct, categories: Array<ICategory>) => {
     formDTO.category = categories.find(category => product.categoryId === category.id)!.name.toLowerCase();
     formDTO.smallImage = product.smallImage;
     formDTO.availability = product.availability;
+    formDTO.defaultImage = product.defaultImage;
   }
   return formDTO;
 }
@@ -42,6 +44,7 @@ export const fromFormData = (request : FormData, categories: Array<ICategory>) =
     smallImage: request.getAll("image").toString(),
     mediumImage: request.getAll("image").toString(),
     largeImage: request.getAll("image").toString(),
+    defaultImage: Number(request.get("defaultImage")),
     slug: createSlug(name) as string,
     availability: Number(request.get("availability"))
   }

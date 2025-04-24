@@ -14,7 +14,7 @@ export async function handleProduct(prevState: IFormState, request: FormData) {
 
     const product = fromFormData(request, categories);
 
-    console.log("fm data ", request)
+    console.log("produc ", product, request)
 
     // Validate form fields using Zod
     const validatedFields = ValidateProduct.safeParse({

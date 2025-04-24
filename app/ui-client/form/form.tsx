@@ -22,11 +22,10 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     const [photos, setPhotos] = useState<ObjectList>([]);
     const [categoryName, setCategoryName] = useState(formDTO.category); 
     const [thumbs, setThumbs] = useState<Array<string>>(formDTO.smallImage.split(","));
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(formDTO.defaultImage);
     const [len, setLen] = useState(formDTO.smallImage.split(",").length);
 
     const handleSelectThb = (index: number) => setSelected(index);
-
 
     useEffect(() => {
         (async function(){
@@ -195,7 +194,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                                     <label className="thb-select">
                                         <input 
                                             type="radio" 
-                                            name="radio" 
+                                            name="defaultImage" 
                                             value={index}
                                             checked={index === selected} 
                                             onChange={() => handleSelectThb(index)} 

@@ -62,6 +62,7 @@ class ProductsService {
         }
     async update(product: IProduct) {
         const db = await openDb();
+        console.log("prod ", product)
         const sql =` UPDATE products
             SET price = ${product.price},
             name="${product.name}",
@@ -70,6 +71,7 @@ class ProductsService {
             mediumImage="${product.mediumImage}",
             largeImage="${product.largeImage}",
             availability=${product.availability},
+            defaultImage=${product.defaultImage},
             slug="${product.slug}",
             categoryId=${product.categoryId}
             WHERE id = ${product.id}`;
@@ -81,8 +83,8 @@ class ProductsService {
         const db = await openDb();
 
         const sql = `INSERT INTO products ( 
-            name,smallImage,mediumImage,largeImage,slug,description,availability,price,categoryId
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            name,smallImage,mediumImage,largeImage,slug,description,availability,defaultImage,price,categoryId
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         const params = [
             product.name, 
@@ -92,6 +94,7 @@ class ProductsService {
             product.slug, 
             product.description, 
             product.availability, 
+            product.defaultImage, 
             product.price, 
             product.categoryId
         ];

@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { HREF } from "../aws-images/s3-configuration";
 
-export default function ImageWidget({ images, thumbs, category }: {
+export default function ImageWidget({ images, thumbs, category, defaultImage }: {
     images: Array<string>;
     thumbs: Array<string>;
     category: string;
+    defaultImage: number;
 }) {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(defaultImage);
     const handleSelect = (index: number) => setSelected(index);
 
     return (

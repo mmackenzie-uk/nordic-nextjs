@@ -37,6 +37,8 @@ async function toDomain(productsDTO) {
     // For ease of entering data, catgeory is entered by slug. Convert slug to Id
     const category = categories.find(({ slug }) => (slug === dataObject.category));
 
+    // console.log("prod ", dataObject)
+
     const product = {
       name: dataObject.name,
       price: Number(dataObject.price), 
@@ -45,6 +47,7 @@ async function toDomain(productsDTO) {
       mediumImage: dataObject.mediumImage, 
       largeImage: dataObject.largeImage, 
       availability: dataObject.availability, 
+      defaultImage: dataObject.defaultImage,
       slug: dataObject.slug,
       categoryId: category.id
     }
@@ -67,12 +70,13 @@ async function createProducts(products) {
     description VARCHAR(512),
     price INTEGER NOT NULL,
     availability INTEGER NOT NULL,
+    defaultImage INTEGER NOT NULL,
     categoryId  INTEGER,
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
     );
   `);
   const prodArr = [];
-  products.map((product) => {
+  products.map((product, index) => {
     const pr = db.run(
       `INSERT INTO products ( name, 
                               smallImage,
@@ -81,8 +85,9 @@ async function createProducts(products) {
                               slug,
                               description,
                               availability,
+                              defaultImage,
                               price,
-                              categoryId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+                              categoryId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
                               product.name, 
                               product.smallImage, 
                               product.mediumImage, 
@@ -90,6 +95,7 @@ async function createProducts(products) {
                               product.slug,
                               product.description,
                               product.availability, 
+                              product.defaultImage,
                               product.price,
                               product.categoryId
     );
@@ -107,7 +113,6 @@ async function seedProducts(productsDTO) {
 async function seedCategories(categoriesDTO) {
   await createCategories(categoriesDTO);
 }  
-
 
 export {
   seedProducts,

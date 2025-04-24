@@ -52,7 +52,12 @@ export default async function Product({ params }: {params: Promise<{ slug: strin
                 </section>
                 <section className="section">
                     <div className="product-grid">
-                        <ImageWidget thumbs={productDTO.smallImage} images={productDTO.largeImage} category={productDTO.category!} />
+                        <ImageWidget 
+                            thumbs={productDTO.smallImage} 
+                            images={productDTO.largeImage} 
+                            category={productDTO.category!} 
+                            defaultImage={productDTO.defaultImage}
+                        />
                         <div className="product-details">
                             <h2 className="product-name">{productDTO.name}</h2>
                             <p className="product-price">$ {productDTO.price.toFixed(2)}</p>

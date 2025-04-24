@@ -2,16 +2,15 @@ import Link from "next/link";
 
 import BtnBuy from "../ui-client/btn-buy";
 import { BtnLike } from "./btns";
-import { HREF, IMAGE_PREFIX } from "../aws-images/s3-configuration";
+import { HREF } from "../aws-images/s3-configuration";
 import { IProductDTO } from "../DTO/productDTO";
-import { ICategoryDTO } from "../DTO/categoryDTO";
 
 export default function Card({ productDTO }: {
     productDTO: IProductDTO;
 }) {
-    const { name, mediumImage, slug, category } = productDTO;
+    const { name, mediumImage, slug, category, defaultImage } = productDTO;
     // const src = IMAGE_PREFIX + encodeURIComponent(mediumImage[0]); 
-    const src = HREF + category + "/" + encodeURIComponent(mediumImage[0]); 
+    const src = HREF + category + "/" + encodeURIComponent(mediumImage[defaultImage]); 
     return (
         <div className="card">                   
             <Link href={`/product/${slug}`} className="card-img-wrap">
