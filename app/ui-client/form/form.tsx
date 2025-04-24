@@ -18,7 +18,6 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     categoriesDTO: Array<ICategoryDTO>,
     edit: boolean
 }) {
-    // what a fcuking mess :-)
 
     const defThbs = (formDTO.smallImage === "") ? [] : formDTO.smallImage.split(",");
     const [photos, setPhotos] = useState<ObjectList>([]);
@@ -213,7 +212,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                         } 
                         </ul>
                         <div>
-                            {/* <p>{formDTO.smallImage}</p> */}
+                            <p>{formDTO.smallImage}</p>
                         </div> 
                     </div>
                 </div>
