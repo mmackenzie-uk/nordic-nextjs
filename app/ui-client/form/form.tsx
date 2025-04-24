@@ -18,6 +18,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     categoriesDTO: Array<ICategoryDTO>,
     edit: boolean
 }) {
+    // what a fcuking mess :-)
 
     const defThbs = (formDTO.smallImage === "") ? [] : formDTO.smallImage.split(",");
     const [photos, setPhotos] = useState<ObjectList>([]);
@@ -27,8 +28,6 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     const [len, setLen] = useState(defThbs.length);
 
     const handleSelectThb = (index: number) => setSelected(index);
-
-    console.log("thbs ", thumbs)
 
     useEffect(() => {
         (async function(){
