@@ -19,13 +19,16 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     edit: boolean
 }) {
 
+    const defThbs = (formDTO.smallImage === "") ? [] : formDTO.smallImage.split(",");
     const [photos, setPhotos] = useState<ObjectList>([]);
     const [categoryName, setCategoryName] = useState(formDTO.category); 
-    const [thumbs, setThumbs] = useState<Array<string>>(formDTO.smallImage.split(","));
+    const [thumbs, setThumbs] = useState<Array<string>>(defThbs);
     const [selected, setSelected] = useState(formDTO.defaultImage);
-    const [len, setLen] = useState(formDTO.smallImage.split(",").length);
+    const [len, setLen] = useState(defThbs.length);
 
     const handleSelectThb = (index: number) => setSelected(index);
+
+    console.log("thbs ", thumbs)
 
     useEffect(() => {
         (async function(){
@@ -55,7 +58,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
         const index = thumbs.indexOf(img);
         (index > -1) ? thumbs.splice(index, 1) : thumbs.push(img);
         setThumbs(thumbs);
-        setLen(thumbs.length);
+        setLen(thumbs.length); // required for react to trigger update
     }
     
     return (
