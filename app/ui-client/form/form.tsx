@@ -211,12 +211,12 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                             })    
                         } 
                         </ul>
-                        <div>
-                            <p>{formDTO.smallImage}</p>
-                        </div> 
                     </div>
                 </div>
             </section>
+            <div style={{width: "1600px", overflowY: "auto", margin: "0 auto"}}>
+                {formDTO.smallImage}
+            </div> 
         </form>
 
     );
