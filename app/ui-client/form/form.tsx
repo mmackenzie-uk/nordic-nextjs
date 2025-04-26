@@ -1,5 +1,5 @@
 "use client"
-const { ASPECR_RATIO_IMAGE } = require( "@/app/templates");
+const { ASPECT_RATIO_IMAGE } = require( "@/app/templates");
 import { handleProduct } from "@/app/actions/form-actions";
 import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
@@ -130,7 +130,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                                                         src={photoUrl} 
                                                         className="bucket-image-widget-img"
                                                         alt="form image"
-                                                        style={{border: "1px solid #bbb", aspectRatio: ASPECR_RATIO_IMAGE}}
+                                                        style={{border: "1px solid #bbb", aspectRatio: ASPECT_RATIO_IMAGE}}
                                                     />
                                                 </label>
                                             </div>
