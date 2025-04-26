@@ -1,8 +1,9 @@
 "use client"
-
+const { ASPECR_RATIO_IMAGE } = require( "@/app/templates");
 import { handleProduct } from "@/app/actions/form-actions";
 import { HREF } from "@/app/aws-images/s3-configuration";
 import Link from "next/link";
+
 
 import { _Object } from "@aws-sdk/client-s3";
 import { ChangeEvent, ChangeEventHandler, useActionState, useEffect, useState } from "react";
@@ -129,7 +130,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                                                         src={photoUrl} 
                                                         className="bucket-image-widget-img"
                                                         alt="form image"
-                                                        style={{border: "1px solid #bbb"}}
+                                                        style={{border: "1px solid #bbb", aspectRatio: ASPECR_RATIO_IMAGE}}
                                                     />
                                                 </label>
                                             </div>

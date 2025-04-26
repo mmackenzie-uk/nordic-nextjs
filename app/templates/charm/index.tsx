@@ -75,5 +75,6 @@ module.exports = {
     { icon: "cm-font-pinterest", url: ""}
   ],
   CART_CLOSED_POSITION: "-410px",
-  CART_OPENED_POSITION: "0px"
+  CART_OPENED_POSITION: "0px",
+  ASPECT_RATIO_IMAGE: 1
 }
