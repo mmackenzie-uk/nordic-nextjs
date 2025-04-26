@@ -3,6 +3,8 @@ import { deleteProduct } from "@/app/actions/delete-action";
 import { findAll, getCategories, getCount } from "@/app/actions/get-actions"
 import { HREF } from "@/app/aws-images/s3-configuration";
 import { BinIcon, AddIcon, EditIcon } from "@/app/icons-svg";
+const { ASPECT_RATIO_IMAGE } = require( "@/app/templates");
+
 
 import Pagination from "@/app/ui-client/pagination";
 import Link from "next/link";
@@ -61,7 +63,12 @@ export default async function Page(props: { searchParams?: Promise<{ page?: stri
                         <li key={id} className="admin-list-item">
                             <span>{id}</span>
                             <div className="admin-list-img-wrap">
-                                <img src={src} className="admin-list-img" alt="product image" />
+                                <img 
+                                    src={src} 
+                                    className="admin-list-img" 
+                                    alt="product image" 
+                                    style={{aspectRatio: ASPECT_RATIO_IMAGE}}
+                                />
                             </div>
                             <span>{name}</span>
                             <span>{slug}</span>

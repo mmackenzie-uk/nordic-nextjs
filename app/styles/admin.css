@@ -58,21 +58,15 @@ li.admin-list-item {
 }
 
 .admin-list-img {
-    max-width: 80px;
+    width: 80px;
+    border: 2px solid #444;
 }
 
 .admin-list-img-wrap {
     width: 80px;
-    aspect-ratio: 350 / 435;
-    border: 1px solid #999;
+    /* aspect-ratio: 350 / 435; */
     overflow: hidden;
 }
-
-.admin-list-img {
-    height: 100%;
-    width: 100%;
-}
-
 
 
 
