@@ -19,7 +19,7 @@ class ProductsService {
             const sql = `SELECT * FROM products ORDER BY id DESC LIMIT ${ITEMS_PER_PAGE} OFFSET ${OFFSET}`;
             const products = await db.all(sql);
             return products as Array<IProduct>;
-        }
+    }
     async getByCategory(categoryId: number, currentPage = 1, ITEMS_PER_PAGE = 5) {
             const OFFSET = (currentPage - 1) * ITEMS_PER_PAGE;
             const db = await openDb();

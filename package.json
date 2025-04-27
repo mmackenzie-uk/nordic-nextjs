@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed-wwurm": "node ./app/data/wwurm/seed.js",
-    "seed-charm": "node ./app/data/charm/seed.js"
+    "seed-charm": "node ./app/data/charm/seed.js",
+    "dump-charm": "node ./app/data/charm/dump.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.779.0",

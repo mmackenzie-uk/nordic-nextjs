@@ -114,8 +114,17 @@ async function seedCategories(categoriesDTO) {
   await createCategories(categoriesDTO);
 }  
 
+async function productsDump() {
+  const db = await openDb();
+  const sql = 'SELECT * FROM products';
+  const products = await db.all(sql);
+  // the two terms "null" and "4" are for formatting the json file to be pretty
+  return JSON.stringify(products, null, 4);
+}
+
 export {
   seedProducts,
   seedCategories,
-  deleteDb
+  deleteDb,
+  productsDump
 }
