@@ -6,5 +6,4 @@ export type IFormDTO = {
   category: string,
   smallImage: string,
   availability: number,
-  defaultImage: number
 }

@@ -56,7 +56,6 @@ export default async function Product({ params }: {params: Promise<{ slug: strin
                             thumbs={productDTO.smallImage} 
                             images={productDTO.largeImage} 
                             category={productDTO.category!} 
-                            defaultImage={productDTO.defaultImage}
                         />
                         <div className="product-details">
                             <h2 className="product-name">{productDTO.name}</h2>

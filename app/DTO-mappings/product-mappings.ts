@@ -11,7 +11,6 @@ export const fromProductDomain = ({
   mediumImage,
   largeImage,
   availability,
-  defaultImage,
   slug,
   categoryId} : IProduct, categories: Array<ICategory>) => {
 
@@ -25,7 +24,6 @@ export const fromProductDomain = ({
     mediumImage: mediumImage.replaceAll("\"", "").split(','),
     largeImage: largeImage.replaceAll("\"", "").split(','),
     availability,
-    defaultImage,
     slug,
     category: categories.find(category => category.id === categoryId)!.name.toLowerCase()
   }

@@ -7,7 +7,6 @@ export interface IProduct {
     smallImage: string; 
     mediumImage: string;
     largeImage: string; 
-    defaultImage: number;
     availability: number; 
     slug: string;
     categoryId?: number;

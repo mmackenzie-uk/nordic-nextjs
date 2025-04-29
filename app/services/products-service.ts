@@ -71,7 +71,6 @@ class ProductsService {
             mediumImage="${product.mediumImage}",
             largeImage="${product.largeImage}",
             availability=${product.availability},
-            defaultImage=${product.defaultImage},
             slug="${product.slug}",
             categoryId=${product.categoryId}
             WHERE id = ${product.id}`;
@@ -83,7 +82,7 @@ class ProductsService {
         const db = await openDb();
 
         const sql = `INSERT INTO products ( 
-            name,smallImage,mediumImage,largeImage,slug,description,availability,defaultImage,price,categoryId
+            name,smallImage,mediumImage,largeImage,slug,description,availability,price,categoryId
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         const params = [
@@ -94,7 +93,6 @@ class ProductsService {
             product.slug, 
             product.description, 
             product.availability, 
-            product.defaultImage, 
             product.price, 
             product.categoryId
         ];

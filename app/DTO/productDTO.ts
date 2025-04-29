@@ -7,7 +7,6 @@ export type IProductDTO = {
   mediumImage: Array<string>;
   largeImage: Array<string>; 
   availability: number; 
-  defaultImage: number;
   slug: string;
   category: string;
 }

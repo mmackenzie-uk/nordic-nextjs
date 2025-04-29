@@ -47,7 +47,6 @@ async function toDomain(productsDTO) {
       mediumImage: dataObject.mediumImage, 
       largeImage: dataObject.largeImage, 
       availability: dataObject.availability, 
-      defaultImage: dataObject.defaultImage,
       slug: dataObject.slug,
       categoryId: category.id
     }
@@ -70,7 +69,6 @@ async function createProducts(products) {
     description VARCHAR(512),
     price INTEGER NOT NULL,
     availability INTEGER NOT NULL,
-    defaultImage INTEGER NOT NULL,
     categoryId  INTEGER,
     FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
     );
@@ -85,9 +83,8 @@ async function createProducts(products) {
                               slug,
                               description,
                               availability,
-                              defaultImage,
                               price,
-                              categoryId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+                              categoryId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
                               product.name, 
                               product.smallImage, 
                               product.mediumImage, 
@@ -95,7 +92,6 @@ async function createProducts(products) {
                               product.slug,
                               product.description,
                               product.availability, 
-                              product.defaultImage,
                               product.price,
                               product.categoryId
     );
