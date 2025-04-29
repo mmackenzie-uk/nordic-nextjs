@@ -197,7 +197,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                                         <input 
                                             type="radio" 
                                             name="defaultImage" 
-                                            value={index}
+                                            value={thumb}
                                             checked={index === selected} 
                                             onChange={() => handleSelectThb(index)} 
                                             hidden
