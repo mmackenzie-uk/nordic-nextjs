@@ -6,22 +6,22 @@
     },
     {
         "id": 2,
-        "name": "Rings",
-        "slug": "rings"
-    },
-    {
-        "id": 3,
         "name": "Earrings",
         "slug": "earrings"
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "Brooches",
         "slug": "brooches"
     },
     {
-        "id": 5,
+        "id": 4,
         "name": "Necklaces",
         "slug": "necklaces"
+    },
+    {
+        "id": 5,
+        "name": "Rings",
+        "slug": "rings"
     }
 ]
