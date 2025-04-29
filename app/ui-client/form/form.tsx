@@ -24,7 +24,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
     const [photos, setPhotos] = useState<ObjectList>([]);
     const [categoryName, setCategoryName] = useState(formDTO.category); 
     const [thumbs, setThumbs] = useState<Array<string>>(defThbs);
-    const [selected, setSelected] = useState(formDTO.defaultImage);
+    const [selected, setSelected] = useState(0);
     const [len, setLen] = useState(defThbs.length);
 
     const handleSelectThb = (index: number) => setSelected(index);
@@ -171,7 +171,7 @@ export default function Form({ formDTO, edit, categoriesDTO }: {
                                     defaultValue={formDTO.price.toFixed(2)} 
                                     name="price" 
                                     min="1" 
-                                    step=".1"
+                                    step=".01"
                                 />
                             </div>
                             <div>
