@@ -2,6 +2,44 @@ import * as fs from 'fs';
 
 import { openDb } from './db.js' 
 
+export const fromProductDomain = ({
+  id,  
+  name,
+  price,
+  description,
+  smallImage,
+  mediumImage,
+  largeImage,
+  availability,
+  slug,
+  categoryId } , categories) => {
+
+  const productDTO = {
+    id,
+    name,
+    price,
+    description,
+    smallImage,
+    mediumImage,
+    largeImage,
+    availability,
+    slug,
+    category: categories.find(category => category.id === categoryId).name.toLowerCase()
+  }
+  return  productDTO;
+}
+
+export const fromProductsDomain = (products, categories) => {
+  const arr = [];
+  products.forEach((product) => {
+      const response = fromProductDomain(product, categories)
+      arr.push(response);
+  });
+  return arr;
+}
+
+
+
 function deleteDb() {
   fs.unlink('./mydb.db', function (err) {
     if (!err) {
@@ -112,15 +150,26 @@ async function seedCategories(categoriesDTO) {
 
 async function productsDump() {
   const db = await openDb();
-  const sql = 'SELECT * FROM products';
-  const products = await db.all(sql);
+  const products = await db.all('SELECT * FROM products');
+  const categories = await db.all('SELECT * FROM categories');
+  const productsDTO = fromProductsDomain(products, categories);
   // the two terms "null" and "4" are for formatting the json file to be pretty
-  return JSON.stringify(products, null, 4);
+  return JSON.stringify(productsDTO, null, 4);
 }
+
+async function categoriesDump() {
+  const db = await openDb();
+  const sql = 'SELECT * FROM categories';
+  const categories = await db.all(sql);
+  // the two terms "null" and "4" are for formatting the json file to be pretty
+  return JSON.stringify(categories, null, 4);
+}
+
 
 export {
   seedProducts,
   seedCategories,
   deleteDb,
-  productsDump
+  productsDump,
+  categoriesDump,
 }

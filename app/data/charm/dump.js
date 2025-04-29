@@ -1,5 +1,9 @@
 import { promises as fs } from 'fs';
-import { productsDump } from "../database-functions.js";
+import { productsDump, categoriesDump } from "../database-functions.js";
 
-const data = await productsDump();
-await fs.writeFile('./app/data/charm/products-dump.json', data);
+const prod = await productsDump();
+await fs.writeFile('./app/data/charm/products-dump.json', prod);
+const cat = await categoriesDump();
+await fs.writeFile('./app/data/charm/categories-dump.json', cat);
+
+

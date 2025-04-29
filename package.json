@@ -10,6 +10,7 @@
     "lint": "next lint",
     "seed-wwurm": "node ./app/data/wwurm/seed.js",
     "seed-charm": "node ./app/data/charm/seed.js",
+    "seed2-charm": "node ./app/data/charm/seed2.js",
     "dump-charm": "node ./app/data/charm/dump.js"
   },
   "dependencies": {
