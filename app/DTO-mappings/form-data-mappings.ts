@@ -34,15 +34,17 @@ export const toFormDTO = (product: IProduct, categories: Array<ICategory>) => {
 export const fromFormData = (request : FormData, categories: Array<ICategory>) => {
   const name = request.get("name") as string;
 
-  const defaultImage = Number(request.get("defaultImage"));
+  const defaultImageIndex = Number(request.get("defaultImage"));
   const arr = request.getAll("image").toString().split(",");
   const orderedArr = [];
-  orderedArr[0] = arr[defaultImage];
-  for (let i = 0; i < arr.length; i++) {
-    if (i !== defaultImage) {
-      orderedArr.push(arr[i]);
+  orderedArr[0] = arr[defaultImageIndex];
+
+  arr.forEach((str, index) => {
+    if (index !== defaultImageIndex) {
+      orderedArr.push(str);
     }
-  }
+  })
+
   const image = orderedArr.join(",")
 
   const product: IProduct = {
