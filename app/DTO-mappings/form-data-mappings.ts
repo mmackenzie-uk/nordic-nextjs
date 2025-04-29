@@ -33,15 +33,27 @@ export const toFormDTO = (product: IProduct, categories: Array<ICategory>) => {
 
 export const fromFormData = (request : FormData, categories: Array<ICategory>) => {
   const name = request.get("name") as string;
+
+  const defaultImage = Number(request.get("defaultImage"));
+  const arr = request.getAll("image").toString().split(",");
+  const orderedArr = [];
+  orderedArr[0] = arr[defaultImage];
+  for (let i = 0; i < arr.length; i++) {
+    if (i !== defaultImage) {
+      orderedArr.push(arr[i]);
+    }
+  }
+  const image = orderedArr.join(",")
+
   const product: IProduct = {
     price: Number(request.get("price")) * 100,
     name: name,
     id: request.get("id") ? Number(request.get("id")) : undefined,
     description: request.get("description") as string,
     categoryId: categories.find(category => category.name === request.get("category"))!.id,
-    smallImage: request.getAll("image").toString(),
-    mediumImage: request.getAll("image").toString(),
-    largeImage: request.getAll("image").toString(),
+    smallImage: image.toString(),
+    mediumImage: image.toString(),
+    largeImage: image.toString(),
     slug: createSlug(name) as string,
     availability: Number(request.get("availability"))
   }

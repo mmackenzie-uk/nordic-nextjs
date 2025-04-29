@@ -62,7 +62,6 @@ class ProductsService {
         }
     async update(product: IProduct) {
         const db = await openDb();
-        console.log("prod ", product)
         const sql =` UPDATE products
             SET price = ${product.price},
             name="${product.name}",
